@@ -10,4 +10,7 @@
     <string name="account_number">account number</string>
     <string name="amount">amount</string>
     <string name="send_money">Send Money</string>
+    <string name="log_out">Log Out</string>
+    <string name="new_password">new password</string>
+    <string name="change_password">Change Password</string>
 </resources>
