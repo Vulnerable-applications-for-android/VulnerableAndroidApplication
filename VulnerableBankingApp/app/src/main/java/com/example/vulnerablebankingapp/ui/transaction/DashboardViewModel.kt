@@ -1,4 +1,4 @@
-package com.example.vulnerablebankingapp.ui.dashboard
+package com.example.vulnerablebankingapp.ui.transaction
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

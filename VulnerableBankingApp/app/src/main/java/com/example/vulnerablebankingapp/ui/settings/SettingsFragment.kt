@@ -1,4 +1,4 @@
-package com.example.vulnerablebankingapp.ui.notifications
+package com.example.vulnerablebankingapp.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater

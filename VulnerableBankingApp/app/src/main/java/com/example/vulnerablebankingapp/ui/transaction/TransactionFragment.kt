@@ -1,4 +1,4 @@
-package com.example.vulnerablebankingapp.ui.dashboard
+package com.example.vulnerablebankingapp.ui.transaction
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.vulnerablebankingapp.MainActivity
 import com.example.vulnerablebankingapp.R
 import com.example.vulnerablebankingapp.TransactionActivity
 import com.google.firebase.auth.EmailAuthProvider

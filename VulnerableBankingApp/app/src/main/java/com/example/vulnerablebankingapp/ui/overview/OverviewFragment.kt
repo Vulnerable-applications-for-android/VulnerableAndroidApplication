@@ -1,4 +1,4 @@
-package com.example.vulnerablebankingapp.ui.home
+package com.example.vulnerablebankingapp.ui.overview
 
 import android.os.Bundle
 import android.util.Log

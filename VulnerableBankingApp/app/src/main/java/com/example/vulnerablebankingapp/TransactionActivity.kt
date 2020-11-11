@@ -31,14 +31,14 @@ class TransactionActivity : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance()
         val userRef = database.getReference(user.uid)
         val receiverRef = database.reference
-        var balance : Double = 0.0
-        var receiverBalance : Double = 0.0
+        var balance = 0.0
+        var receiverBalance = 0.0
 
         receiverRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
             }
             override fun onDataChange(snapshot: DataSnapshot) {
-                var otherAccount : String = ""
+                var otherAccount = ""
                 for (ss in snapshot.children) {
                     if (ss.child("account_number").value == accountNumber.toLong()) {
                         receiverBalance = ss.child("balance").value.toString().toDouble()

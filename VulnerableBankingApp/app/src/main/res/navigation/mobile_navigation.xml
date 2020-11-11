@@ -8,19 +8,19 @@
 
     <fragment
         android:id="@+id/overview_home"
-        android:name="com.example.vulnerablebankingapp.ui.home.OverviewFragment"
+        android:name="com.example.vulnerablebankingapp.ui.overview.OverviewFragment"
         android:label="@string/title_overview"
         tools:layout="@layout/fragment_overview" />
 
     <fragment
         android:id="@+id/navigation_transaction"
-        android:name="com.example.vulnerablebankingapp.ui.dashboard.TransactionFragment"
+        android:name="com.example.vulnerablebankingapp.ui.transaction.TransactionFragment"
         android:label="@string/title_transaction"
         tools:layout="@layout/fragment_transaction_check_password" />
 
     <fragment
         android:id="@+id/navigation_settings"
-        android:name="com.example.vulnerablebankingapp.ui.notifications.SettingsFragment"
+        android:name="com.example.vulnerablebankingapp.ui.settings.SettingsFragment"
         android:label="@string/title_settings"
         tools:layout="@layout/fragment_settings" />
 </navigation>
