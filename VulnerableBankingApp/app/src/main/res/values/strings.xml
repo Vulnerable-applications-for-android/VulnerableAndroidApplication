@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">VulnerableBankingApp</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_overview">Overview</string>
+    <string name="title_transaction">Transaction</string>
+    <string name="title_settings">Settings</string>
+    <string name="email">email</string>
+    <string name="password">password</string>
+    <string name="login">login</string>
 </resources>
