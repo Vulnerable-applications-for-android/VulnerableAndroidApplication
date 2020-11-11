@@ -1,31 +1,51 @@
 package com.example.vulnerablebankingapp.ui.dashboard
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.vulnerablebankingapp.R
+import com.google.android.gms.tasks.Task
+import com.google.firebase.auth.EmailAuthProvider
+import com.google.firebase.auth.FirebaseAuth
+import kotlinx.android.synthetic.main.fragment_transaction_check_password.*
 
 class TransactionFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private lateinit var mAuth: FirebaseAuth
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_transaction, container, false)
-        val textView: TextView = root.findViewById(R.id.text_dashboard)
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+
+        }
+    }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_transaction_check_password, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mAuth = FirebaseAuth.getInstance()
+        login_button.setOnClickListener {
+            buttonGoToTransactionOnClick(it)
+        }
+    }
+
+    private fun buttonGoToTransactionOnClick(view: View) {
+        val email = text_field_email.editText?.text.toString()
+        val password = text_field_password.editText?.text.toString()
+        val credentials = EmailAuthProvider.getCredential(email, password)
+        mAuth.currentUser?.reauthenticate(credentials)?.addOnCompleteListener {
+            if (it.isSuccessful) {
+                Log.d("Reauthorise", "Success")
+            } else {
+                Log.d("Reauthorise", "Error")
+            }
+        }
+
     }
 }
