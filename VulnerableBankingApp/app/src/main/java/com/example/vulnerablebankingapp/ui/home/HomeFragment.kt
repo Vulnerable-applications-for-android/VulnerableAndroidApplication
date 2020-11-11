@@ -1,32 +1,51 @@
 package com.example.vulnerablebankingapp.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.example.vulnerablebankingapp.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeFragment : Fragment() {
+    private lateinit var mAuth: FirebaseAuth
 
-    private lateinit var homeViewModel: HomeViewModel
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
 
-    override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
-    ): View? {
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
-        val textView: TextView = account_number_text_view
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
-        return root
+        }
     }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.fragment_home, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        mAuth = FirebaseAuth.getInstance()
+        val database : FirebaseDatabase = FirebaseDatabase.getInstance()
+        val databaseListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val accountNumber = dataSnapshot.child("account_number").value
+                val balance = dataSnapshot.child("balance").value
+                account_number_text_view.text = "Account Number: $accountNumber"
+                balance_text_view.text = "Balance: $balance"
+                Log.e("account", accountNumber.toString())
+            }
+            override fun onCancelled(databaseError: DatabaseError) {
+
+            }
+        }
+        mAuth.uid?.let { database.getReference(it) }?.addValueEventListener(databaseListener)
+
+    }
+
 }
