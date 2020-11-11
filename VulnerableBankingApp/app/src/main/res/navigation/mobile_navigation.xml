@@ -16,7 +16,7 @@
         android:id="@+id/navigation_transaction"
         android:name="com.example.vulnerablebankingapp.ui.dashboard.TransactionFragment"
         android:label="@string/title_transaction"
-        tools:layout="@layout/fragment_transaction" />
+        tools:layout="@layout/fragment_transaction_check_password" />
 
     <fragment
         android:id="@+id/navigation_settings"

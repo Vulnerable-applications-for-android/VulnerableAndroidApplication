@@ -32,10 +32,12 @@ class OverviewFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         val database : FirebaseDatabase = FirebaseDatabase.getInstance()
+
         val databaseListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val accountNumber = dataSnapshot.child("account_number").value
                 val balance = dataSnapshot.child("balance").value
+                //Error account number is sometimes null, it crashes becuase i switch fragment before the account number and balance have been feteched so the text views no longer exist.
                 account_number_text_view.text = "Account Number: $accountNumber"
                 balance_text_view.text = "Balance: $balance"
                 Log.e("account", accountNumber.toString())
@@ -44,7 +46,7 @@ class OverviewFragment : Fragment() {
 
             }
         }
-        mAuth.uid?.let { database.getReference(it) }?.addValueEventListener(databaseListener)
+        mAuth.uid?.let { database.getReference(it) }?.addListenerForSingleValueEvent(databaseListener)
 
     }
 

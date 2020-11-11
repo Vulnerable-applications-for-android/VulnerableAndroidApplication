@@ -7,4 +7,7 @@
     <string name="password">password</string>
     <string name="login">login</string>
     <string name="create_account">create_account</string>
+    <string name="account_number">account number</string>
+    <string name="amount">amount</string>
+    <string name="send_money">Send Money</string>
 </resources>

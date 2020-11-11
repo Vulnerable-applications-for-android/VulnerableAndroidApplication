@@ -1,13 +1,15 @@
 package com.example.vulnerablebankingapp.ui.dashboard
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.vulnerablebankingapp.MainActivity
 import com.example.vulnerablebankingapp.R
-import com.google.android.gms.tasks.Task
+import com.example.vulnerablebankingapp.TransactionActivity
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.fragment_transaction_check_password.*
@@ -42,6 +44,8 @@ class TransactionFragment : Fragment() {
         mAuth.currentUser?.reauthenticate(credentials)?.addOnCompleteListener {
             if (it.isSuccessful) {
                 Log.d("Reauthorise", "Success")
+                val intent = Intent(this.context, TransactionActivity::class.java)
+                startActivity(intent)
             } else {
                 Log.d("Reauthorise", "Error")
             }
