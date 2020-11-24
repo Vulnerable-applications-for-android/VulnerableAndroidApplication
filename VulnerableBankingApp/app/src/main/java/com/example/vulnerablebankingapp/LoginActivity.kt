@@ -16,6 +16,7 @@ class LoginActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         mAuth = FirebaseAuth.getInstance()
         setContentView(R.layout.activity_login)
+        updateUI(mAuth.currentUser)
     }
 
     fun buttonLogInOnClick(view: View) {

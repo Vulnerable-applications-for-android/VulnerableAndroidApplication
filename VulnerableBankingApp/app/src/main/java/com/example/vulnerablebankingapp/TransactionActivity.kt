@@ -8,6 +8,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_transaction.*
+import java.time.LocalDateTime
 
 class TransactionActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
@@ -29,7 +30,7 @@ class TransactionActivity : AppCompatActivity() {
 
     private fun doTransaction(user : FirebaseUser, accountNumber : String, amount : Float) {
         val database = FirebaseDatabase.getInstance()
-        val userRef = database.getReference(user.uid)
+        var userRef = database.getReference(user.uid)
         val receiverRef = database.reference
         var balance = 0.0
         var receiverBalance = 0.0
@@ -49,7 +50,11 @@ class TransactionActivity : AppCompatActivity() {
                 }
                 if (balance >= amount) {
                     userRef.child("balance").setValue(balance - amount)
+                    val localDateTime = LocalDateTime.now().toString().replace('.', '=')
+                    userRef = userRef.child("transactions").child(localDateTime)
+                    userRef.setValue("-$amount")
                     receiverRef.child(otherAccount).child("balance").setValue(receiverBalance + amount)
+                    receiverRef.child(otherAccount).child("transactions").child(localDateTime).setValue("+$amount")
                     Log.d("Transaction", "Complete")
                 } else {
                     Log.d("Transaction error", "Not sufficient funds")
