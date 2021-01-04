@@ -43,6 +43,9 @@
             android:name=".ChangePasswordActivity"
             android:label="@string/app_name">
         </activity>
+        <service
+            android:name=".TransactionService"
+            android:enabled="true" />
     </application>
 
 </manifest>

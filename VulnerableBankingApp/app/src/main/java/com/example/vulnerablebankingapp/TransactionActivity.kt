@@ -1,6 +1,7 @@
 package com.example.vulnerablebankingapp
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,9 +10,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.*
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import kotlinx.android.synthetic.main.activity_transaction.*
 import java.time.LocalDateTime
+
 
 class TransactionActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
@@ -23,6 +28,7 @@ class TransactionActivity : AppCompatActivity() {
     }
 
     fun buttonSendMoneyOnClick(view: View) {
+        startService(Intent(this, TransactionService::class.java))
         val accountNumber = text_field_account.editText?.text.toString()
         val amount = text_field_amount.editText?.text.toString().toFloat()
         val user = mAuth.currentUser
@@ -31,7 +37,7 @@ class TransactionActivity : AppCompatActivity() {
         }
     }
 
-    private fun doTransaction(user : FirebaseUser, accountNumber : String, amount : Float) {
+    private fun doTransaction(user: FirebaseUser, accountNumber: String, amount: Float) {
         val database = FirebaseDatabase.getInstance()
         var userRef = database.getReference(user.uid)
         val receiverRef = database.reference
@@ -41,6 +47,7 @@ class TransactionActivity : AppCompatActivity() {
         receiverRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
             }
+
             override fun onDataChange(snapshot: DataSnapshot) {
                 var otherAccount = ""
                 for (ss in snapshot.children) {
@@ -56,13 +63,25 @@ class TransactionActivity : AppCompatActivity() {
                     val localDateTime = LocalDateTime.now().toString().replace('.', '=')
                     userRef = userRef.child("transactions").child(localDateTime)
                     userRef.setValue("-$amount")
-                    receiverRef.child(otherAccount).child("balance").setValue(receiverBalance + amount)
-                    receiverRef.child(otherAccount).child("transactions").child(localDateTime).setValue("+$amount")
+                    receiverRef.child(otherAccount).child("balance")
+                        .setValue(receiverBalance + amount)
+                    receiverRef.child(otherAccount).child("transactions").child(localDateTime)
+                        .setValue(
+                            "+$amount"
+                        )
                     Log.d("Transaction", "Complete")
-                    Snackbar.make(LinerLayoutTransaction, "Payment has been made!", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        LinerLayoutTransaction,
+                        "Payment has been made!",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 } else {
                     Log.d("Transaction error", "Not sufficient funds")
-                    Snackbar.make(LinerLayoutTransaction, "Error payment could not be made!", Snackbar.LENGTH_SHORT).show()
+                    Snackbar.make(
+                        LinerLayoutTransaction,
+                        "Error payment could not be made!",
+                        Snackbar.LENGTH_SHORT
+                    ).show()
                 }
             }
         })
