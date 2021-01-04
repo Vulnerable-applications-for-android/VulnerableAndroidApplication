@@ -60,23 +60,20 @@ class OverviewFragment : Fragment() {
         }
         mAuth.uid?.let { database.getReference(it) }?.addListenerForSingleValueEvent(databaseListener)
 
-        val list: ArrayList<TransactionData> = ArrayList()
+        var list: ArrayList<TransactionData> = ArrayList()
         val transactionListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 var i = 0
                 for (transaction in dataSnapshot.children) {
-                    if (i > 10) {
-                        break
-                    } else {
-                        i+=1
-                        list.add(
-                            TransactionData(
-                                "Date: " + transaction.key.toString().split("T")[0],
-                                "Amount: " + transaction.value.toString()
-                        )
-                        )
-                    }
+                    i+=1
+                    list.add(
+                        TransactionData(
+                            "Date: " + transaction.key.toString().split("T")[0],
+                            "Amount: " + transaction.value.toString()
+                    )
+                    )
                 }
+                list.reverse()
                 recycleViewAdapter.submitList(list)
                 recycleViewAdapter.notifyDataSetChanged()
             }

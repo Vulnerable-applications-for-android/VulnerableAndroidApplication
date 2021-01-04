@@ -29,7 +29,8 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".fragments.ForYou">
+        tools:context=".MainActivity"
+        android:paddingBottom="50dp">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recycler_view"

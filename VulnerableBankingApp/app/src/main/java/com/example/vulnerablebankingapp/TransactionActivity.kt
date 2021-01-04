@@ -1,9 +1,12 @@
 package com.example.vulnerablebankingapp
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -56,10 +59,14 @@ class TransactionActivity : AppCompatActivity() {
                     receiverRef.child(otherAccount).child("balance").setValue(receiverBalance + amount)
                     receiverRef.child(otherAccount).child("transactions").child(localDateTime).setValue("+$amount")
                     Log.d("Transaction", "Complete")
+                    Snackbar.make(LinerLayoutTransaction, "Payment has been made!", Snackbar.LENGTH_SHORT).show()
                 } else {
                     Log.d("Transaction error", "Not sufficient funds")
+                    Snackbar.make(LinerLayoutTransaction, "Error payment could not be made!", Snackbar.LENGTH_SHORT).show()
                 }
             }
         })
+        val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        hideKeyboard.hideSoftInputFromWindow(LinerLayoutTransaction.windowToken, 0)
     }
 }

@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.vulnerablebankingapp.CreateAccountActivity
+import com.example.vulnerablebankingapp.LoginActivity
 import com.example.vulnerablebankingapp.R
 import com.example.vulnerablebankingapp.ReauthenticateToChangePasswordActivity
 import com.google.firebase.auth.FirebaseAuth
@@ -36,6 +37,12 @@ class SettingsFragment : Fragment() {
         mAuth = FirebaseAuth.getInstance()
         change_password_button.setOnClickListener {
             val intent = Intent(it.context, ReauthenticateToChangePasswordActivity::class.java)
+            startActivity(intent)
+        }
+
+        log_out.setOnClickListener {
+            FirebaseAuth.getInstance().signOut()
+            val intent = Intent(it.context, LoginActivity::class.java)
             startActivity(intent)
         }
     }
