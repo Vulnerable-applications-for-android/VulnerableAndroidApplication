@@ -50,6 +50,7 @@ class OverviewFragment : Fragment() {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val accountNumber = dataSnapshot.child("account_number").value
                 val balance = MoneyConverter.penniesToPounds((dataSnapshot.child("balance").value).toString().toInt())
+                Log.e("balanceError", (dataSnapshot.child("balance").value).toString())
                 //Error account number is sometimes null, it crashes because i switch fragment before the account number and balance have been feteched so the text views no longer exist.
                 account_number_text_view.text = "Account Number: $accountNumber"
                 balance_text_view.text = "Balance: $balance"

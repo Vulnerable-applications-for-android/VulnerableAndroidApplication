@@ -29,7 +29,8 @@ class TransactionActivity : AppCompatActivity() {
     }
 
     fun buttonSendMoneyOnClick(view: View) {
-        //TODO Validate input fields
+        text_field_account.error = ""
+        text_field_amount.error = ""
         val user = mAuth.currentUser
         val accountNumber = text_field_account.editText?.text.toString()
         if (text_field_amount.editText?.text.toString() == "") {
@@ -37,16 +38,18 @@ class TransactionActivity : AppCompatActivity() {
         } else {
             val amountTemp = text_field_amount.editText?.text.toString().toFloat()
             val amount = MoneyConverter.poundsToPennies(amountTemp).toString()
-            val amountDecimalIndex = amount.indexOf('.')
-            val amountDecimalPlaces = amount.length - amountDecimalIndex - 1
+            var amountDecimalPlaces = 0
+            if (text_field_amount.editText?.text.toString().contains('.')) {
+                val amountDecimalIndex = text_field_amount.editText?.text.toString().indexOf('.')
+                amountDecimalPlaces = text_field_amount.editText?.text.toString().length - amountDecimalIndex - 1
+            }
             if (accountNumber.length != 6) {
                 text_field_account.error = "The account number must be 6 digits"
             } else if (amountDecimalPlaces > 2) {
                 text_field_amount.error = "There can't be more than two decimal places!"
-            } else if (amountTemp < 1) {
-                text_field_amount.error = "The amount must be greater than 1!"
-            }
-            if (user != null) {
+            } else if (amount.toInt() < 1) {
+                text_field_amount.error = "The amount must be greater than 0.01!"
+            } else if (user != null) {
                 val intent = Intent(this, TransactionService::class.java)
                 intent.putExtra("userUID", user.uid)
                 intent.putExtra("accountNumber", accountNumber)
