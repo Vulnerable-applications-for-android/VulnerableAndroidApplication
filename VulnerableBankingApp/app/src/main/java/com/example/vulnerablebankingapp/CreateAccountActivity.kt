@@ -44,7 +44,7 @@ class CreateAccountActivity : AppCompatActivity() {
         val database = FirebaseDatabase.getInstance()
         val myRef = database.getReference(user.uid)
         val accountNumber = (100000..999999).random()
-        val balance = 100
+        val balance = 10000
         myRef.child("account_number").setValue(accountNumber)
         myRef.child("balance").setValue(balance)
     }

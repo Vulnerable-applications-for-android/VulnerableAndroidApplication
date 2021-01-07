@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.vulnerablebankingapp.MoneyConverter
 import com.example.vulnerablebankingapp.R
 import com.example.vulnerablebankingapp.TopSpacingItemDecoration
 import com.example.vulnerablebankingapp.TransactionData
@@ -48,7 +49,7 @@ class OverviewFragment : Fragment() {
         val databaseListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val accountNumber = dataSnapshot.child("account_number").value
-                val balance = dataSnapshot.child("balance").value
+                val balance = MoneyConverter.penniesToPounds((dataSnapshot.child("balance").value).toString().toInt())
                 //Error account number is sometimes null, it crashes because i switch fragment before the account number and balance have been feteched so the text views no longer exist.
                 account_number_text_view.text = "Account Number: $accountNumber"
                 balance_text_view.text = "Balance: $balance"

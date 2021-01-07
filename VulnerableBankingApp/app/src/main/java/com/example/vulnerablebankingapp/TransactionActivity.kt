@@ -28,63 +28,18 @@ class TransactionActivity : AppCompatActivity() {
     }
 
     fun buttonSendMoneyOnClick(view: View) {
-        startService(Intent(this, TransactionService::class.java))
+        //TODO Validate input fields
         val accountNumber = text_field_account.editText?.text.toString()
-        val amount = text_field_amount.editText?.text.toString().toFloat()
+        val amountTemp = text_field_amount.editText?.text.toString().toFloat()
+        val amount = MoneyConverter.poundsToPennies(amountTemp).toString()
         val user = mAuth.currentUser
         if (user != null) {
-            doTransaction(user, accountNumber, amount)
+            val intent = Intent(this, TransactionService::class.java)
+            intent.putExtra("userUID", user.uid)
+            intent.putExtra("accountNumber", accountNumber)
+            intent.putExtra("amount", amount)
+            startService(intent)
         }
-    }
-
-    private fun doTransaction(user: FirebaseUser, accountNumber: String, amount: Float) {
-        val database = FirebaseDatabase.getInstance()
-        var userRef = database.getReference(user.uid)
-        val receiverRef = database.reference
-        var balance = 0.0
-        var receiverBalance = 0.0
-
-        receiverRef.addListenerForSingleValueEvent(object : ValueEventListener {
-            override fun onCancelled(error: DatabaseError) {
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var otherAccount = ""
-                for (ss in snapshot.children) {
-                    if (ss.child("account_number").value == accountNumber.toLong()) {
-                        receiverBalance = ss.child("balance").value.toString().toDouble()
-                        otherAccount = ss.key.toString()
-                    } else if (ss.key == user.uid) {
-                        balance = ss.child("balance").value.toString().toDouble()
-                    }
-                }
-                if (balance >= amount) {
-                    userRef.child("balance").setValue(balance - amount)
-                    val localDateTime = LocalDateTime.now().toString().replace('.', '=')
-                    userRef = userRef.child("transactions").child(localDateTime)
-                    userRef.setValue("-$amount")
-                    receiverRef.child(otherAccount).child("balance")
-                        .setValue(receiverBalance + amount)
-                    receiverRef.child(otherAccount).child("transactions").child(localDateTime)
-                        .setValue(
-                            "+$amount"
-                        )
-                    Log.d("Transaction", "Complete")
-                    Snackbar.make(
-                        LinerLayoutTransaction,
-                        "Payment has been made!",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                } else {
-                    Log.d("Transaction error", "Not sufficient funds")
-                    Snackbar.make(
-                        LinerLayoutTransaction,
-                        "Error payment could not be made!",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        })
         val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         hideKeyboard.hideSoftInputFromWindow(LinerLayoutTransaction.windowToken, 0)
     }
