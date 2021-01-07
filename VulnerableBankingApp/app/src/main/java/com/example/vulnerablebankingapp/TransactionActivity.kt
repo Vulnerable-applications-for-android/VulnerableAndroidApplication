@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
@@ -29,18 +30,31 @@ class TransactionActivity : AppCompatActivity() {
 
     fun buttonSendMoneyOnClick(view: View) {
         //TODO Validate input fields
-        val accountNumber = text_field_account.editText?.text.toString()
-        val amountTemp = text_field_amount.editText?.text.toString().toFloat()
-        val amount = MoneyConverter.poundsToPennies(amountTemp).toString()
         val user = mAuth.currentUser
-        if (user != null) {
-            val intent = Intent(this, TransactionService::class.java)
-            intent.putExtra("userUID", user.uid)
-            intent.putExtra("accountNumber", accountNumber)
-            intent.putExtra("amount", amount)
-            startService(intent)
+        val accountNumber = text_field_account.editText?.text.toString()
+        if (text_field_amount.editText?.text.toString() == "") {
+            text_field_amount.error = "Amount cannot be blank."
+        } else {
+            val amountTemp = text_field_amount.editText?.text.toString().toFloat()
+            val amount = MoneyConverter.poundsToPennies(amountTemp).toString()
+            val amountDecimalIndex = amount.indexOf('.')
+            val amountDecimalPlaces = amount.length - amountDecimalIndex - 1
+            if (accountNumber.length != 6) {
+                text_field_account.error = "The account number must be 6 digits"
+            } else if (amountDecimalPlaces > 2) {
+                text_field_amount.error = "There can't be more than two decimal places!"
+            } else if (amountTemp < 1) {
+                text_field_amount.error = "The amount must be greater than 1!"
+            }
+            if (user != null) {
+                val intent = Intent(this, TransactionService::class.java)
+                intent.putExtra("userUID", user.uid)
+                intent.putExtra("accountNumber", accountNumber)
+                intent.putExtra("amount", amount)
+                startService(intent)
+            }
+            val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            hideKeyboard.hideSoftInputFromWindow(LinerLayoutTransaction.windowToken, 0)
         }
-        val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        hideKeyboard.hideSoftInputFromWindow(LinerLayoutTransaction.windowToken, 0)
     }
 }

@@ -13,6 +13,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:hint="@string/account_number"
+        app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -25,6 +26,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="50dp"
         android:hint="@string/amount"
+        app:errorEnabled="true"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"

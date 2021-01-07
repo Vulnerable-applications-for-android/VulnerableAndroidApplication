@@ -24,7 +24,6 @@ class TransactionService : Service() {
     var amount: Int? = null
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        Log.e("Service", "Service has started")
         userUID = intent.getStringExtra("userUID") ?: ""
         accountNumber = intent.getStringExtra("accountNumber") ?: ""
         amount = intent.getStringExtra("amount").toInt()
@@ -39,21 +38,17 @@ class TransactionService : Service() {
     }
 
     private fun transaction(context: Context) {
-        Log.e("Service", "Transaction started")
         val database = FirebaseDatabase.getInstance()
         var userRef = database.getReference(userUID)
         val receiverRef = database.reference
         var balance = 0
         var receiverBalance = 0
-        Log.e("Service", "onDataChange")
-
         receiverRef.addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                Log.e("Service", "onDataChange")
                 var otherAccount = ""
                 for (ss in snapshot.children) {
                     if ((ss.child("account_number").value).toString().toInt() == accountNumber.toInt()) {
@@ -65,7 +60,7 @@ class TransactionService : Service() {
                 }
                 if (otherAccount == "") {
                     Log.e("Service", "other account is empty")
-                    //TODO error other account does not exist
+                    Toast.makeText(context, "Account number does not exist", Toast.LENGTH_SHORT).show()
                     stopSelf()
                 } else if (balance >= amount!!) {
                     userRef.child("balance").setValue(balance - amount!!)
@@ -83,7 +78,7 @@ class TransactionService : Service() {
                     stopSelf()
                 } else {
                     Log.d("Transaction error", "Not sufficient funds")
-                    Toast.makeText(context, "Error Not sufficient funds", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, "Error: Not sufficient funds", Toast.LENGTH_SHORT).show()
                     stopSelf()
                 }
             }
