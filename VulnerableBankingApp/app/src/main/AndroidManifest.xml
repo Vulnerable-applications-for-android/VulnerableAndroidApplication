@@ -45,7 +45,8 @@
         </activity>
         <service
             android:name=".TransactionService"
-            android:enabled="true" />
+            android:enabled="true"
+            android:exported="true"/>
     </application>
 
 </manifest>
