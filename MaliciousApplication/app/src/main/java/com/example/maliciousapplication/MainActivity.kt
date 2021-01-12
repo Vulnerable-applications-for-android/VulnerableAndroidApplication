@@ -16,4 +16,9 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun buttonExportedServiceOnclick(view: View) {
+        val intent = Intent(this, ExportedServiceActivity::class.java)
+        startActivity(intent)
+    }
+
 }

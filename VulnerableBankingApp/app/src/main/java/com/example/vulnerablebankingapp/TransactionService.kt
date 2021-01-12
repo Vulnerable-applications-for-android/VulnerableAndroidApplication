@@ -1,5 +1,6 @@
 package com.example.vulnerablebankingapp
 
+import android.app.Notification
 import android.app.Service
 import android.content.Context
 import android.content.Intent
@@ -22,6 +23,7 @@ class TransactionService : Service() {
     lateinit var userUID: String
     lateinit var accountNumber: String
     var amount: Int? = null
+
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
         userUID = intent.getStringExtra("userUID") ?: ""

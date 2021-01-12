@@ -11,4 +11,5 @@
         android:onClick="buttonActivityAccessOnclick"
         android:text="Start Activity Access"
         android:layout_gravity="center"/>
+
 </androidx.appcompat.widget.LinearLayoutCompat>

@@ -13,4 +13,13 @@
         android:onClick="buttonActivityAccessOnClick"
         android:text="Activity Access"
         android:layout_marginTop="70dp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_exported_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:onClick="buttonExportedServiceOnclick"
+        android:text="Exported Service"
+        android:layout_marginTop="70dp"/>
 </androidx.appcompat.widget.LinearLayoutCompat>
