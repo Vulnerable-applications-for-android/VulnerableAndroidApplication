@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">VulnerableSMSApp</string>
+    <string name="tab_text_1">Messages</string>
+    <string name="tab_text_2">Contacts</string>
+</resources>
