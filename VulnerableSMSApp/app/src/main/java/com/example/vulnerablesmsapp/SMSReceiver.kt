@@ -24,7 +24,6 @@ class SMSReceiver : BroadcastReceiver() {
         val messages: Array<out SmsMessage>? = Telephony.Sms.Intents.getMessagesFromIntent(intent)
         val message = messages?.get(0)?.messageBody
         Toast.makeText(context,message,Toast.LENGTH_LONG).show()
-
     }
 
 }

@@ -2,4 +2,10 @@
     <string name="app_name">MaliciousApplication</string>
     <string name="account_number">Account Number</string>
     <string name="amount">amount</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="message">Message</string>
+    <string name="send_message">Send message</string>
+    <string name="broadcast">Broadcast</string>
+    <string name="exported_service">Exported Service</string>
+    <string name="activity_access">Activity Access</string>
 </resources>
