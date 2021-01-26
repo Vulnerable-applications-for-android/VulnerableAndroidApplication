@@ -11,7 +11,7 @@ import android.view.MenuItem
 import com.example.vulnerablesmsapp.ui.main.SectionsPagerAdapter
 
 class MainActivity : AppCompatActivity() {
-
+    //TODO reason for using a content provider "You want to expose your application data to widgets."
     override fun onCreate(savedInstanceState: Bundle?) {
         //TODO need to check and ask for sms permission!!
         super.onCreate(savedInstanceState)
