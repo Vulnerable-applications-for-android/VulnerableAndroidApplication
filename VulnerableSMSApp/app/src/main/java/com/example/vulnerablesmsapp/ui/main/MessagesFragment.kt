@@ -1,11 +1,18 @@
 package com.example.vulnerablesmsapp.ui.main
 
+import android.database.Cursor
+import android.database.sqlite.SQLiteCursor
+import android.database.sqlite.SQLiteQueryBuilder
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.vulnerablesmsapp.R
+import com.example.vulnerablesmsapp.SMSContentProvider
 
 /**
  * A placeholder fragment containing a simple view.
@@ -31,5 +38,25 @@ class MessagesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        getContacts()
+    }
+
+    private fun getContacts() {
+        val url = "content://com.example.vulnerablesmsapp.SMSContentProvider"
+        val contacts = Uri.parse(url)
+        val cursor = context?.contentResolver?.query(contacts, null, null, null, "name")
+
+        if (cursor != null) {
+            if (cursor.moveToFirst()) {
+                do {
+                    var test = ""
+                    test += cursor.getString(0) + " "
+                    test += cursor.getString(1) + " "
+                    test += cursor.getString(2)
+                    Log.e("Error", "HELP " + test)
+                } while (cursor.moveToNext())
+            }
+        }
+        cursor?.close()
     }
 }
