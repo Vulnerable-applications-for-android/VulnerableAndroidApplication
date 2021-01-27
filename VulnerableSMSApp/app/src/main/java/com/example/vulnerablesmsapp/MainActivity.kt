@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import com.example.vulnerablesmsapp.ui.main.SectionsPagerAdapter
+import com.google.android.material.tabs.TabLayoutMediator
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
     //TODO reason for using a content provider "You want to expose your application data to widgets."
@@ -16,11 +18,16 @@ class MainActivity : AppCompatActivity() {
         //TODO need to check and ask for sms permission!!
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val sectionsPagerAdapter = SectionsPagerAdapter(this, supportFragmentManager)
-        val viewPager: ViewPager = findViewById(R.id.view_pager)
-        viewPager.adapter = sectionsPagerAdapter
-        val tabs: TabLayout = findViewById(R.id.tabs)
-        tabs.setupWithViewPager(viewPager)
-
+        view_pager.adapter = SectionsPagerAdapter(this)
+        TabLayoutMediator(tabs, view_pager) { tab, position ->
+            when (position) {
+                0 -> {
+                    tab.text = "Messages"
+                }
+                1 -> {
+                    tab.text = "New Message"
+                }
+            }
+        }.attach()
     }
 }
