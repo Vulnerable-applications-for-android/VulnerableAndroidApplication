@@ -19,6 +19,7 @@ class SectionsPagerAdapter(fm: AppCompatActivity) : FragmentStateAdapter(fm) {
         return 2
     }
 
+
     /**
      * Creating the fragment depending on the position.
      * @param position Int

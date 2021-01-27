@@ -15,8 +15,8 @@ class SMSContentProvider : ContentProvider() {
 
     companion object {
         const val PROVIDER_NAME = "com.example.vulnerablesmsapp.SMSContentProvider"
-        const val URL = "content://SMSContentProvider/contacts"
-        val CONTENT_URI = android.net.Uri.parse(URL)
+        private const val URL = "content://$PROVIDER_NAME/contacts"
+        val CONTENT_URI: Uri = Uri.parse(URL)
 
         val ID = "_id"
         const val NAME = "name";
