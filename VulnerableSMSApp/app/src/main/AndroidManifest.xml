@@ -35,8 +35,10 @@
                 <action android:name="sendSMSBroadcast"/>
             </intent-filter>
         </receiver>
-        <provider android:name=".SMSContentProvider"
-            android:authorities="com.example.vulnerablesmsapp.SMSContentProvider"/>
+        <provider
+            android:name=".SMSContentProvider"
+            android:authorities="com.example.vulnerablesmsapp.SMSContentProvider"
+            android:exported="true"/>
     </application>
 
 </manifest>
