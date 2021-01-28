@@ -25,4 +25,9 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, BroadcastActivity::class.java)
         startActivity(intent)
     }
+
+    fun buttonContentProviderOnclick(view: View) {
+        val intent = Intent(this, ContentProviderActivity::class.java)
+        startActivity(intent)
+    }
 }

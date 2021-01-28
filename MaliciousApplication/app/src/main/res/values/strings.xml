@@ -8,4 +8,7 @@
     <string name="broadcast">Broadcast</string>
     <string name="exported_service">Exported Service</string>
     <string name="activity_access">Activity Access</string>
+    <string name="name">Name</string>
+    <string name="add_maliciously_sms_message">Add maliciously SMS message</string>
+    <string name="content_provider">Content Provider</string>
 </resources>
