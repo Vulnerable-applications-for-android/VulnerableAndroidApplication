@@ -31,7 +31,7 @@ class CreateMessageFragment : Fragment() {
             values.put(SMSContentProvider.NAME, name)
             values.put(SMSContentProvider.NUMBER, number)
 
-            val uri = context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI, values)
+            val uri = context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_CONTACTS, values)
             Toast.makeText(context, uri.toString(), Toast.LENGTH_LONG).show()
         }
         return view
@@ -55,8 +55,7 @@ class CreateMessageFragment : Fragment() {
         values.put(SMSContentProvider.NAME, name)
         values.put(SMSContentProvider.NUMBER, number)
 
-        val uri = context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI, values)
+        val uri = context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_CONTACTS, values)
         Toast.makeText(context, uri.toString(), Toast.LENGTH_LONG).show()
     }
-
 }

@@ -42,7 +42,7 @@ class MessagesFragment : Fragment() {
     }
 
     private fun getContacts() {
-        val url = "content://com.example.vulnerablesmsapp.SMSContentProvider"
+        val url = "content://com.example.vulnerablesmsapp.SMSContentProvider/contacts"
         val contacts = Uri.parse(url)
         val cursor = context?.contentResolver?.query(contacts, null, null, null, "name")
 
