@@ -53,8 +53,25 @@ class MessagesFragment : Fragment() {
                     test += cursor.getString(0) + " "
                     test += cursor.getString(1) + " "
                     test += cursor.getString(2)
-                    Log.e("Error", "HELP " + test)
+                    Log.e("Error", "Contacts " + test)
                 } while (cursor.moveToNext())
+            }
+        }
+        cursor?.close()
+
+        val urlMessage = "content://com.example.vulnerablesmsapp.SMSContentProvider/messages"
+        val messages = Uri.parse(urlMessage)
+        val cursorMessage = context?.contentResolver?.query(messages, null, null, null, null)
+
+        if (cursorMessage != null) {
+            if (cursorMessage.moveToFirst()) {
+                do {
+                    var test = ""
+                    test += cursorMessage.getString(0) + " "
+                    test += cursorMessage.getString(1) + " "
+                    test += cursorMessage.getString(2) + " "
+                    Log.e("Error", "Messages " + test)
+                } while (cursorMessage.moveToNext())
             }
         }
         cursor?.close()

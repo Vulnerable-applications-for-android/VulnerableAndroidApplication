@@ -22,8 +22,10 @@ class SMSContentProvider : ContentProvider() {
         val CONTENT_URI_MESSAGES: Uri = Uri.parse(URL_MESSAGES)
 
         val ID = "_id"
-        const val NAME = "name";
-        const val NUMBER = "number";
+        const val NAME = "name"
+        const val NUMBER = "number"
+        const val MESSAGE = "message"
+        const val ID_CONTACT = "id_contact"
 
         lateinit var contactsProjectionMap: HashMap<String, String>
         lateinit var messagesProjectionMap: HashMap<String, String>

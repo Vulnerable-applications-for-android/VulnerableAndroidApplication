@@ -1,7 +1,9 @@
 package com.example.vulnerablesmsapp.ui.main
 
 import android.content.ContentValues
+import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,7 +34,26 @@ class CreateMessageFragment : Fragment() {
             values.put(SMSContentProvider.NUMBER, number)
 
             val uri = context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_CONTACTS, values)
-            Toast.makeText(context, uri.toString(), Toast.LENGTH_LONG).show()
+
+            val url = "content://com.example.vulnerablesmsapp.SMSContentProvider/contacts"
+            val messages = Uri.parse(url)
+            val cursor = context?.contentResolver?.query(messages, null, null, null, null)
+
+            var contact_id = ""
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    contact_id = cursor.getString(0)
+                }
+            }
+            cursor?.close()
+
+            val message = text_field_message.editText?.text.toString()
+            val messageValues = ContentValues()
+            messageValues.put(SMSContentProvider.ID_CONTACT, contact_id)
+            messageValues.put(SMSContentProvider.MESSAGE, message)
+            context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_MESSAGES, messageValues)
+
+            Toast.makeText(context, "Message Created", Toast.LENGTH_LONG).show()
         }
         return view
     }
