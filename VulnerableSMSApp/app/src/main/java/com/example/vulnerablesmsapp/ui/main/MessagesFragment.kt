@@ -11,13 +11,16 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.example.vulnerablesmsapp.R
-import com.example.vulnerablesmsapp.SMSContentProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.vulnerablesmsapp.*
+import kotlinx.android.synthetic.main.fragment_main.*
+import java.security.MessageDigest
 
 /**
  * A placeholder fragment containing a simple view.
  */
 class MessagesFragment : Fragment() {
+    private lateinit var recycleViewAdapter: MessagesRecycleViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,10 +41,18 @@ class MessagesFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recycler_view.apply {
+            layoutManager = LinearLayoutManager(activity)
+            val topSpacingItemDecoration = TopSpacingItemDecoration(30)
+            addItemDecoration(topSpacingItemDecoration)
+            recycleViewAdapter = MessagesRecycleViewAdapter()
+            adapter = recycleViewAdapter
+        }
         getContacts()
     }
 
     private fun getContacts() {
+        var list: ArrayList<MessagesData> = ArrayList()
         val url = "content://com.example.vulnerablesmsapp.SMSContentProvider/contacts"
         val contacts = Uri.parse(url)
         val cursor = context?.contentResolver?.query(contacts, null, null, null, "name")
@@ -49,31 +60,36 @@ class MessagesFragment : Fragment() {
         if (cursor != null) {
             if (cursor.moveToFirst()) {
                 do {
-                    var test = ""
-                    test += cursor.getString(0) + " "
-                    test += cursor.getString(1) + " "
-                    test += cursor.getString(2)
-                    Log.e("Error", "Contacts " + test)
+                    list.add(
+                        MessagesData(
+                            cursor.getString(1),
+                            cursor.getString(2).toInt(),
+                            cursor.getString(0).toInt()
+                        )
+                    )
+                    Log.e("Error", "name " + cursor.getString(1))
                 } while (cursor.moveToNext())
             }
         }
         cursor?.close()
+        recycleViewAdapter.submitList(list)
+        recycleViewAdapter.notifyDataSetChanged()
 
-        val urlMessage = "content://com.example.vulnerablesmsapp.SMSContentProvider/messages"
-        val messages = Uri.parse(urlMessage)
-        val cursorMessage = context?.contentResolver?.query(messages, null, null, null, null)
-
-        if (cursorMessage != null) {
-            if (cursorMessage.moveToFirst()) {
-                do {
-                    var test = ""
-                    test += cursorMessage.getString(0) + " "
-                    test += cursorMessage.getString(1) + " "
-                    test += cursorMessage.getString(2) + " "
-                    Log.e("Error", "Messages " + test)
-                } while (cursorMessage.moveToNext())
-            }
-        }
-        cursor?.close()
+//        val urlMessage = "content://com.example.vulnerablesmsapp.SMSContentProvider/messages"
+//        val messages = Uri.parse(urlMessage)
+//        val cursorMessage = context?.contentResolver?.query(messages, null, null, null, null)
+//
+//        if (cursorMessage != null) {
+//            if (cursorMessage.moveToFirst()) {
+//                do {
+//                    var test = ""
+//                    test += cursorMessage.getString(0) + " "
+//                    test += cursorMessage.getString(1) + " "
+//                    test += cursorMessage.getString(2) + " "
+//                    Log.e("Error", "Messages " + test)
+//                } while (cursorMessage.moveToNext())
+//            }
+//        }
+//        cursor?.close()
     }
 }
