@@ -1,20 +1,18 @@
 package com.example.vulnerablesmsapp.ui.main
 
-import android.database.Cursor
-import android.database.sqlite.SQLiteCursor
-import android.database.sqlite.SQLiteQueryBuilder
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.vulnerablesmsapp.*
+import com.example.vulnerablesmsapp.MessagesData
+import com.example.vulnerablesmsapp.MessagesRecycleViewAdapter
+import com.example.vulnerablesmsapp.R
+import com.example.vulnerablesmsapp.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_main.*
-import java.security.MessageDigest
 
 /**
  * A placeholder fragment containing a simple view.
@@ -48,6 +46,7 @@ class MessagesFragment : Fragment() {
             recycleViewAdapter = MessagesRecycleViewAdapter()
             adapter = recycleViewAdapter
         }
+
         getContacts()
     }
 
@@ -61,11 +60,11 @@ class MessagesFragment : Fragment() {
             if (cursor.moveToFirst()) {
                 do {
                     list.add(
-                        MessagesData(
-                            cursor.getString(1),
-                            cursor.getString(2).toInt(),
-                            cursor.getString(0).toInt()
-                        )
+                            MessagesData(
+                                    cursor.getString(1),
+                                    cursor.getString(2).toInt(),
+                                    cursor.getString(0).toInt()
+                            )
                     )
                     Log.e("Error", "name " + cursor.getString(1))
                 } while (cursor.moveToNext())
