@@ -25,6 +25,8 @@ class SMSContentProvider : ContentProvider() {
         const val NAME = "name"
         const val NUMBER = "number"
         const val MESSAGE = "message"
+        const val IS_USER = "is_user"
+        const val TIMESTAMP = "timestamp"
         const val ID_CONTACT = "id_contact"
 
         lateinit var contactsProjectionMap: HashMap<String, String>
@@ -48,7 +50,9 @@ class SMSContentProvider : ContentProvider() {
         const val CREATE_DB_TABLE_MESSAGES = " CREATE TABLE " + MESSAGES_TABLE_NAME +
                 " (_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 " id_contact INTEGER NOT NULL, " +
-                " message TEXT NOT NULL);"
+                " message TEXT NOT NULL," +
+                " is_user INTEGER NOT NULL," +
+                " timestamp INTEGER NOT NULL);"
 
     }
 

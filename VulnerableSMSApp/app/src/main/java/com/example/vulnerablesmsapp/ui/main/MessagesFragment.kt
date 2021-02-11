@@ -8,10 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.vulnerablesmsapp.MessagesData
-import com.example.vulnerablesmsapp.MessagesRecycleViewAdapter
-import com.example.vulnerablesmsapp.R
-import com.example.vulnerablesmsapp.TopSpacingItemDecoration
+import com.example.vulnerablesmsapp.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
 /**
@@ -74,21 +71,26 @@ class MessagesFragment : Fragment() {
         recycleViewAdapter.submitList(list)
         recycleViewAdapter.notifyDataSetChanged()
 
-//        val urlMessage = "content://com.example.vulnerablesmsapp.SMSContentProvider/messages"
-//        val messages = Uri.parse(urlMessage)
-//        val cursorMessage = context?.contentResolver?.query(messages, null, null, null, null)
-//
-//        if (cursorMessage != null) {
-//            if (cursorMessage.moveToFirst()) {
-//                do {
-//                    var test = ""
-//                    test += cursorMessage.getString(0) + " "
-//                    test += cursorMessage.getString(1) + " "
-//                    test += cursorMessage.getString(2) + " "
-//                    Log.e("Error", "Messages " + test)
-//                } while (cursorMessage.moveToNext())
-//            }
-//        }
-//        cursor?.close()
+
+
+        //Get Messages
+        val urlMessage = "content://com.example.vulnerablesmsapp.SMSContentProvider/messages"
+        val messages = Uri.parse(urlMessage)
+        val cursorMessage = context?.contentResolver?.query(messages, null, null, null, SMSContentProvider.TIMESTAMP)
+
+        if (cursorMessage != null) {
+            if (cursorMessage.moveToFirst()) {
+                do {
+                    var test = ""
+                    test += cursorMessage.getString(0) + " "
+                    test += cursorMessage.getString(1) + " "
+                    test += cursorMessage.getString(2) + " "
+                    test += cursorMessage.getString(3) + " "
+                    test += cursorMessage.getString(4) + " "
+                    Log.e("Error", "Messages " + test)
+                } while (cursorMessage.moveToNext())
+            }
+        }
+        cursor?.close()
     }
 }

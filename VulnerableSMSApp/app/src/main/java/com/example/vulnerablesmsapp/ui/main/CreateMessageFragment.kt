@@ -15,6 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.vulnerablesmsapp.R
 import com.example.vulnerablesmsapp.SMSContentProvider
 import kotlinx.android.synthetic.main.fragment_create_message.*
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 class CreateMessageFragment : Fragment() {
 
@@ -51,6 +53,8 @@ class CreateMessageFragment : Fragment() {
             val messageValues = ContentValues()
             messageValues.put(SMSContentProvider.ID_CONTACT, contact_id)
             messageValues.put(SMSContentProvider.MESSAGE, message)
+            messageValues.put(SMSContentProvider.IS_USER, 1)
+            messageValues.put(SMSContentProvider.TIMESTAMP, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toInt())
             context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_MESSAGES, messageValues)
 
             Toast.makeText(context, "Message Created", Toast.LENGTH_LONG).show()
