@@ -70,27 +70,6 @@ class MessagesFragment : Fragment() {
         cursor?.close()
         recycleViewAdapter.submitList(list)
         recycleViewAdapter.notifyDataSetChanged()
-
-
-
-        //Get Messages
-        val urlMessage = "content://com.example.vulnerablesmsapp.SMSContentProvider/messages"
-        val messages = Uri.parse(urlMessage)
-        val cursorMessage = context?.contentResolver?.query(messages, null, null, null, SMSContentProvider.TIMESTAMP)
-
-        if (cursorMessage != null) {
-            if (cursorMessage.moveToFirst()) {
-                do {
-                    var test = ""
-                    test += cursorMessage.getString(0) + " "
-                    test += cursorMessage.getString(1) + " "
-                    test += cursorMessage.getString(2) + " "
-                    test += cursorMessage.getString(3) + " "
-                    test += cursorMessage.getString(4) + " "
-                    Log.e("Error", "Messages " + test)
-                } while (cursorMessage.moveToNext())
-            }
-        }
-        cursor?.close()
     }
+
 }

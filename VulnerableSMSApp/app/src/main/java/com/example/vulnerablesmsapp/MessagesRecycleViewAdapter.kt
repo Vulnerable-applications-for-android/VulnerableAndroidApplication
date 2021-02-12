@@ -41,6 +41,8 @@ class MessagesRecycleViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
             itemView.setOnClickListener {
                 val intent = Intent(it.context, MessageActivity::class.java)
                 intent.putExtra("name", messagesData.name)
+                intent.putExtra("id", messagesData.id)
+                intent.putExtra("number", messagesData.number)
                 startActivity(it.context, intent, null)
             }
         }
