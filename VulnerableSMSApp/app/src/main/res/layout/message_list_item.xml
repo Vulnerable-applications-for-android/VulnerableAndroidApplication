@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardElevation="10dp"
+    app:cardElevation="1dp"
     app:cardPreventCornerOverlap="false"
     >
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,10 +23,16 @@
             app:layout_constraintRight_toRightOf="parent">
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/name_text_view"
+                android:id="@+id/message_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="20sp"/>
+
+            <View
+                android:id="@+id/message_breaker"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"/>
 
         </androidx.appcompat.widget.LinearLayoutCompat>
     </androidx.constraintlayout.widget.ConstraintLayout>
