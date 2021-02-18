@@ -37,6 +37,7 @@ class SMSContentProvider : ContentProvider() {
         const val MESSAGES = 3
         const val MESSAGE_ID = 4
 
+
         val uriMatcher = UriMatcher(UriMatcher.NO_MATCH)
 
         const val DATABASE_NAME = "SMS"
@@ -131,6 +132,7 @@ class SMSContentProvider : ContentProvider() {
                 c.setNotificationUri(context?.contentResolver, uri)
                 return c
             }
+
         }
         return null
     }
