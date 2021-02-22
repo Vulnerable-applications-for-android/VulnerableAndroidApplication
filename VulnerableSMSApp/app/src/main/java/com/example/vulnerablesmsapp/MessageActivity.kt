@@ -28,20 +28,22 @@ class MessageActivity : AppCompatActivity() {
 
     private fun getMessages() {
         val list = ArrayList<MessageData>()
-        val urlMessage = "content://com.example.vulnerablesmsapp.SMSContentProvider/messages/$id"
+        val urlMessage = "content://com.example.vulnerablesmsapp.SMSContentProvider/messages"
         val messages = Uri.parse(urlMessage)
         val cursorMessage = this.contentResolver?.query(messages, null, null, null, SMSContentProvider.TIMESTAMP)
 
         if (cursorMessage != null) {
             if (cursorMessage.moveToFirst()) {
-                do {
-                    list.add(
+                if (cursorMessage.getString(1) == id) {
+                    do {
+                        list.add(
                             MessageData(
-                                    cursorMessage.getString(3).toBoolean(),
-                                    cursorMessage.getString(2)
+                                cursorMessage.getString(3).toBoolean(),
+                                cursorMessage.getString(2)
                             )
-                    )
-                } while (cursorMessage.moveToNext())
+                        )
+                    } while (cursorMessage.moveToNext())
+                }
             }
         }
         cursorMessage?.close()

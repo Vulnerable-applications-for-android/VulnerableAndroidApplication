@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.vulnerablesmsapp.ContentProviderController
 import com.example.vulnerablesmsapp.R
 import com.example.vulnerablesmsapp.SMSContentProvider
 import kotlinx.android.synthetic.main.fragment_create_message.*
@@ -35,29 +36,15 @@ class CreateMessageFragment : Fragment() {
             values.put(SMSContentProvider.NAME, name)
             values.put(SMSContentProvider.NUMBER, number)
 
-            val uri = context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_CONTACTS, values)
+            var contactId =
+                this.context?.let { it1 -> ContentProviderController.getIdFromNumber(number, it1) }
 
-            val url = "content://com.example.vulnerablesmsapp.SMSContentProvider/contacts"
-            val messages = Uri.parse(url)
-            val cursor = context?.contentResolver?.query(messages, null, null, null, null)
-
-            var contact_id = ""
-            if (cursor != null) {
-                if (cursor.moveToFirst()) {
-                    contact_id = cursor.getString(0)
-                }
+            if (contactId == "") {
+                context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_CONTACTS, values)
+                Toast.makeText(context, "Contact added", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(context, "Contact Already exists with that number", Toast.LENGTH_LONG).show()
             }
-            cursor?.close()
-
-            val message = text_field_message.editText?.text.toString()
-            val messageValues = ContentValues()
-            messageValues.put(SMSContentProvider.ID_CONTACT, contact_id)
-            messageValues.put(SMSContentProvider.MESSAGE, message)
-            messageValues.put(SMSContentProvider.IS_USER, 1)
-            messageValues.put(SMSContentProvider.TIMESTAMP, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toInt())
-            context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_MESSAGES, messageValues)
-
-            Toast.makeText(context, "Message Created", Toast.LENGTH_LONG).show()
         }
         return view
     }
