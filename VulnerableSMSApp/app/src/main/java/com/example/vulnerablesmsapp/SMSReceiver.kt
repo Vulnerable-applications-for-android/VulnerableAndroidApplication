@@ -35,14 +35,14 @@ class SMSReceiver : BroadcastReceiver() {
             val messageValues = ContentValues()
             messageValues.put(SMSContentProvider.ID_CONTACT, contactId)
             messageValues.put(SMSContentProvider.MESSAGE, message)
-            messageValues.put(SMSContentProvider.IS_USER, 0)
+            messageValues.put(SMSContentProvider.IS_USER, false)
             messageValues.put(SMSContentProvider.TIMESTAMP, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toInt())
             context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_MESSAGES, messageValues)
         } else {
             val messageValues = ContentValues()
             messageValues.put(SMSContentProvider.ID_CONTACT, id)
             messageValues.put(SMSContentProvider.MESSAGE, message)
-            messageValues.put(SMSContentProvider.IS_USER, 0)
+            messageValues.put(SMSContentProvider.IS_USER, false)
             messageValues.put(SMSContentProvider.TIMESTAMP, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toInt())
             context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_MESSAGES, messageValues)
         }

@@ -1,11 +1,17 @@
 package com.example.vulnerablesmsapp
 
+import android.content.ContentValues
+import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_message.*
+import java.time.LocalDateTime
+import java.time.ZoneOffset
 
 class MessageActivity : AppCompatActivity() {
     private var id = "";
@@ -24,6 +30,12 @@ class MessageActivity : AppCompatActivity() {
             adapter = recycleViewAdapter
         }
         getMessages();
+
+        val sendButton = findViewById<Button>(R.id.button_send)
+        sendButton.setOnClickListener {
+            sendMessage()
+            addMessageToDatabase()
+        }
     }
 
     private fun getMessages() {
@@ -49,5 +61,24 @@ class MessageActivity : AppCompatActivity() {
         cursorMessage?.close()
         recycleViewAdapter.submitList(list)
         recycleViewAdapter.notifyDataSetChanged()
+    }
+
+    private fun sendMessage() {
+        val intent = Intent()
+        intent.action = "sendSMSBroadcast"
+        intent.putExtra("number", number)
+        intent.putExtra("message", text_field_message.editText?.text.toString())
+        //intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+        sendBroadcast(intent)
+    }
+
+    private fun addMessageToDatabase() {
+        val message = text_field_message.editText?.text.toString()
+        val messageValues = ContentValues()
+        messageValues.put(SMSContentProvider.ID_CONTACT, id)
+        messageValues.put(SMSContentProvider.MESSAGE, message)
+        messageValues.put(SMSContentProvider.IS_USER, true)
+        messageValues.put(SMSContentProvider.TIMESTAMP, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toInt())
+        this.contentResolver?.insert(SMSContentProvider.CONTENT_URI_MESSAGES, messageValues)
     }
 }

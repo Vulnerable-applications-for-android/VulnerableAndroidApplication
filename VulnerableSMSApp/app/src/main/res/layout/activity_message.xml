@@ -38,7 +38,7 @@
     </FrameLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/text_field_password"
+        android:id="@+id/text_field_message"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="300dp"
         android:layout_height="70dp"
@@ -46,7 +46,7 @@
         android:layout_marginBottom="20dp"
         android:hint="@string/message"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/materialButton2"
+        app:layout_constraintEnd_toStartOf="@+id/button_send"
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -56,7 +56,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/materialButton2"
+        android:id="@+id/button_send"
         android:layout_width="wrap_content"
         android:layout_height="70dp"
         android:layout_gravity="center"
@@ -64,6 +64,6 @@
         android:text="Send"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/text_field_password" />
+        app:layout_constraintStart_toEndOf="@+id/text_field_message" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
