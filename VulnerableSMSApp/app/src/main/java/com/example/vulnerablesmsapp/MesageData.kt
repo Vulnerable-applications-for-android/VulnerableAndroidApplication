@@ -1,6 +1,6 @@
 package com.example.vulnerablesmsapp
 
 data class MessageData(
-        var isUser: Boolean,
+        var isUser: Int,
         var message: String,
 )

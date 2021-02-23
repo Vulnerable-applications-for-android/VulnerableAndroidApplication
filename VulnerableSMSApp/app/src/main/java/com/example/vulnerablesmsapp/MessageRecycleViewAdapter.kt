@@ -42,7 +42,7 @@ class MessageRecycleViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(
 
         fun bind(messageData: MessageData) {
             message.text = messageData.message
-            if (messageData.isUser) {
+            if (messageData.isUser == 1) {
                 messageBreaker.setBackgroundColor(Color.parseColor("#00FF00"))
             } else {
                 messageBreaker.setBackgroundColor(Color.parseColor("#0000FF"))

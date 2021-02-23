@@ -50,7 +50,7 @@ class MessageActivity : AppCompatActivity() {
                     do {
                         list.add(
                             MessageData(
-                                cursorMessage.getString(3).toBoolean(),
+                                cursorMessage.getString(3).toInt(),
                                 cursorMessage.getString(2)
                             )
                         )
@@ -77,7 +77,7 @@ class MessageActivity : AppCompatActivity() {
         val messageValues = ContentValues()
         messageValues.put(SMSContentProvider.ID_CONTACT, id)
         messageValues.put(SMSContentProvider.MESSAGE, message)
-        messageValues.put(SMSContentProvider.IS_USER, true)
+        messageValues.put(SMSContentProvider.IS_USER, 1)
         messageValues.put(SMSContentProvider.TIMESTAMP, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toInt())
         this.contentResolver?.insert(SMSContentProvider.CONTENT_URI_MESSAGES, messageValues)
     }
