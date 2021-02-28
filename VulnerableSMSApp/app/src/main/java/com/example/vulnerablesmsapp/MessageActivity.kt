@@ -23,6 +23,7 @@ class MessageActivity : AppCompatActivity() {
         setContentView(R.layout.activity_message)
         name_text_view.text = intent.extras?.get("name").toString()
         id = intent.extras?.get("id").toString();
+        Log.e("IDERROR", id);
         number = intent.extras?.get("number").toString();
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this.context)
@@ -46,16 +47,16 @@ class MessageActivity : AppCompatActivity() {
 
         if (cursorMessage != null) {
             if (cursorMessage.moveToFirst()) {
-                if (cursorMessage.getString(1) == id) {
-                    do {
+                do {
+                    if (cursorMessage.getString(1) == id) {
                         list.add(
-                            MessageData(
-                                cursorMessage.getString(3).toInt(),
-                                cursorMessage.getString(2)
-                            )
+                                MessageData(
+                                        cursorMessage.getString(3).toInt(),
+                                        cursorMessage.getString(2)
+                                )
                         )
-                    } while (cursorMessage.moveToNext())
-                }
+                    }
+                } while (cursorMessage.moveToNext())
             }
         }
         cursorMessage?.close()

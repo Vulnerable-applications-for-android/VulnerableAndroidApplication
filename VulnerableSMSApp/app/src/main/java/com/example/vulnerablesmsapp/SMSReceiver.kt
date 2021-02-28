@@ -31,7 +31,6 @@ class SMSReceiver : BroadcastReceiver() {
             context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_CONTACTS, values)
 
             val contactId = ContentProviderController.getIdFromNumber(number, context);
-
             val messageValues = ContentValues()
             messageValues.put(SMSContentProvider.ID_CONTACT, contactId)
             messageValues.put(SMSContentProvider.MESSAGE, message)
