@@ -25,6 +25,7 @@ class MessageActivity : AppCompatActivity() {
         id = intent.extras?.get("id").toString();
         Log.e("IDERROR", id);
         number = intent.extras?.get("number").toString();
+        number_text_view.text = number
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this.context)
             recycleViewAdapter = MessageRecycleViewAdapter()
