@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_message.*
@@ -35,8 +36,14 @@ class MessageActivity : AppCompatActivity() {
 
         val sendButton = findViewById<Button>(R.id.button_send)
         sendButton.setOnClickListener {
-            sendMessage()
-            addMessageToDatabase()
+            val message = text_field_message.editText?.text.toString()
+            if (message != "") {
+                sendMessage(message)
+                addMessageToDatabase(message)
+            } else {
+                Toast.makeText(this, "Message cannot be blank!", Toast.LENGTH_LONG).show()
+            }
+
         }
     }
 
@@ -65,18 +72,17 @@ class MessageActivity : AppCompatActivity() {
         recycleViewAdapter.notifyDataSetChanged()
     }
 
-    private fun sendMessage() {
+    private fun sendMessage(message: String) {
         //TODO not working atm!!
         val intent = Intent()
         intent.action = "sendSMSBroadcast"
         intent.putExtra("number", number)
-        intent.putExtra("message", text_field_message.editText?.text.toString())
+        intent.putExtra("message", message)
         //intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
         sendBroadcast(intent)
     }
 
-    private fun addMessageToDatabase() {
-        val message = text_field_message.editText?.text.toString()
+    private fun addMessageToDatabase(message: String) {
         val messageValues = ContentValues()
         messageValues.put(SMSContentProvider.ID_CONTACT, id)
         messageValues.put(SMSContentProvider.MESSAGE, message)
