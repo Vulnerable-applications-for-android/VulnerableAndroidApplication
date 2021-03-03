@@ -1,10 +1,12 @@
 package com.example.vulnerablesmsapp.ui.main
 
 import android.content.ContentValues
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -41,6 +43,8 @@ class CreateContactFragment : Fragment() {
             } else {
                 Toast.makeText(context, "Name or number cannot be blank!", Toast.LENGTH_LONG).show()
             }
+            val keyboard = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            keyboard.hideSoftInputFromWindow(requireView().windowToken, 0)
         }
         return view
     }
