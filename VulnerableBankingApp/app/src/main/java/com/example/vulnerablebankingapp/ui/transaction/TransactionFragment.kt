@@ -2,22 +2,18 @@ package com.example.vulnerablebankingapp.ui.transaction
 
 import android.content.Context
 import android.content.Intent
-import android.inputmethodservice.InputMethodService
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.inputmethod.InputMethod
 import android.view.inputmethod.InputMethodManager
-import androidx.core.content.ContextCompat.getSystemService
 import androidx.fragment.app.Fragment
 import com.example.vulnerablebankingapp.R
 import com.example.vulnerablebankingapp.TransactionActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.android.synthetic.main.activity_transaction.*
 import kotlinx.android.synthetic.main.fragment_transaction_check_password.*
 
 class TransactionFragment : Fragment() {
@@ -31,7 +27,11 @@ class TransactionFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         return inflater.inflate(R.layout.fragment_transaction_check_password, container, false)
     }
 
@@ -65,5 +65,7 @@ class TransactionFragment : Fragment() {
                 }
             }
         }
+        val keyboard = requireActivity().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        keyboard.hideSoftInputFromWindow(requireView().windowToken, 0)
     }
 }

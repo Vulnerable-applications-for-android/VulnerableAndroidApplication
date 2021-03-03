@@ -1,15 +1,18 @@
 package com.example.vulnerablebankingapp
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
 import kotlinx.android.synthetic.main.activity_create_account.*
+import kotlinx.android.synthetic.main.activity_transaction.*
 
 class CreateAccountActivity : AppCompatActivity() {
     private lateinit var mAuth: FirebaseAuth
@@ -44,6 +47,8 @@ class CreateAccountActivity : AppCompatActivity() {
         } else {
             Snackbar.make(view, "Email or password cannot be blank!", Snackbar.LENGTH_SHORT).show()
         }
+        val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        hideKeyboard.hideSoftInputFromWindow(LinerLayoutCreateAccount.windowToken, 0)
     }
 
     private fun addAccountToDatabase(user: FirebaseUser) {
