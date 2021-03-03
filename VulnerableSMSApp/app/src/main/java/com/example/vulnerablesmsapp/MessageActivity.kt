@@ -22,9 +22,9 @@ class MessageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message)
         name_text_view.text = intent.extras?.get("name").toString()
-        id = intent.extras?.get("id").toString();
+        id = intent.extras?.get("id").toString()
         Log.e("IDERROR", id);
-        number = intent.extras?.get("number").toString();
+        number = intent.extras?.get("number").toString()
         number_text_view.text = number
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this.context)

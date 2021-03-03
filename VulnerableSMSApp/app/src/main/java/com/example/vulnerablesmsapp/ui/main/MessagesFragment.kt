@@ -59,7 +59,7 @@ class MessagesFragment : Fragment() {
                     list.add(
                             ContactData(
                                     cursor.getString(1),
-                                    cursor.getString(2).toInt(),
+                                    cursor.getString(2),
                                     cursor.getString(0).toInt()
                             )
                     )

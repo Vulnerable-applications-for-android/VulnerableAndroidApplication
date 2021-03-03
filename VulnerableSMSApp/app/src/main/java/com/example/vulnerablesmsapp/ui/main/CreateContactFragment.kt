@@ -26,18 +26,20 @@ class CreateContactFragment : Fragment() {
         addContactButton.setOnClickListener {
             val name = text_field_name.editText?.text.toString()
             val number = text_field_number.editText?.text.toString()
-            val values =  ContentValues()
-            values.put(SMSContentProvider.NAME, name)
-            values.put(SMSContentProvider.NUMBER, number)
-
-            var contactId =
-                this.context?.let { it1 -> ContentProviderController.getIdFromNumber(number, it1) }
-
-            if (contactId == "") {
-                context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_CONTACTS, values)
-                Toast.makeText(context, "Contact added", Toast.LENGTH_LONG).show()
+            if (name != "" && number != "") {
+                val values =  ContentValues()
+                values.put(SMSContentProvider.NAME, name)
+                values.put(SMSContentProvider.NUMBER, number)
+                var contactId =
+                        this.context?.let { it1 -> ContentProviderController.getIdFromNumber(number, it1) }
+                if (contactId == "") {
+                    context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_CONTACTS, values)
+                    Toast.makeText(context, "Contact added", Toast.LENGTH_LONG).show()
+                } else {
+                    Toast.makeText(context, "Contact Already exists with that number", Toast.LENGTH_LONG).show()
+                }
             } else {
-                Toast.makeText(context, "Contact Already exists with that number", Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "Name or number cannot be blank!", Toast.LENGTH_LONG).show()
             }
         }
         return view
