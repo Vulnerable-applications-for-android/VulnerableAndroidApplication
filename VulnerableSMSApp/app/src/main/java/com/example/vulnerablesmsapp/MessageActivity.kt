@@ -1,11 +1,13 @@
 package com.example.vulnerablesmsapp
 
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -44,6 +46,8 @@ class MessageActivity : AppCompatActivity() {
             } else {
                 Toast.makeText(this, "Message cannot be blank!", Toast.LENGTH_LONG).show()
             }
+            val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            hideKeyboard.hideSoftInputFromWindow(constraint_layout_message.windowToken, 0)
         }
     }
 
