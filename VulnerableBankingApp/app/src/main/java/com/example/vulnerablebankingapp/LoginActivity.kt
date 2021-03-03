@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_login.*
@@ -22,7 +23,8 @@ class LoginActivity : AppCompatActivity(){
     fun buttonLogInOnClick(view: View) {
         val email = text_field_email.editText?.text.toString()
         val password = text_field_password.editText?.text.toString()
-        mAuth.signInWithEmailAndPassword(email, password)
+        if (email != "" && password != "") {
+            mAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign in success, update UI with the signed-in user's information
@@ -32,9 +34,13 @@ class LoginActivity : AppCompatActivity(){
                     } else {
                         // If sign in fails, display a message to the user.
                         Log.w("Error", "signInWithEmail:failure", task.exception)
+                        Snackbar.make(view, "Email or password is wrong!", Snackbar.LENGTH_SHORT).show()
                         updateUI(null)
                     }
                 }
+        } else {
+            Snackbar.make(view, "Email or password cannot be blank!", Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     fun buttonCreateAccountOnClick(view: View) {

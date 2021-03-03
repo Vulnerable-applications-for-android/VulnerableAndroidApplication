@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.FirebaseDatabase
@@ -22,22 +23,27 @@ class CreateAccountActivity : AppCompatActivity() {
     fun buttonCreateAccountOnClick(view: View) {
         val email = text_field_email.editText?.text.toString()
         val password = text_field_password.editText?.text.toString()
-        mAuth.createUserWithEmailAndPassword(email, password)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    // Sign in success, update UI with the signed-in user's information
-                    Log.d("Success", "createUserWithEmail:success")
-                    val user = mAuth.currentUser
-                    if (user != null) {
-                        addAccountToDatabase(user)
+        if (email != "" && password != "") {
+            mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this) { task ->
+                    if (task.isSuccessful) {
+                        // Sign in success, update UI with the signed-in user's information
+                        Log.d("Success", "createUserWithEmail:success")
+                        val user = mAuth.currentUser
+                        if (user != null) {
+                            addAccountToDatabase(user)
+                        }
+                        updateUI(user)
+                    } else {
+                        // If sign in fails, display a message to the user.
+                        Log.w("Error", "createUserWithEmail:failure", task.exception)
+                        Snackbar.make(view, task.exception?.message.toString(), Snackbar.LENGTH_SHORT).show()
+                        updateUI(null)
                     }
-                    updateUI(user)
-                } else {
-                    // If sign in fails, display a message to the user.
-                    Log.w("Error", "createUserWithEmail:failure", task.exception)
-                    updateUI(null)
                 }
-            }
+        } else {
+            Snackbar.make(view, "Email or password cannot be blank!", Snackbar.LENGTH_SHORT).show()
+        }
     }
 
     private fun addAccountToDatabase(user: FirebaseUser) {
