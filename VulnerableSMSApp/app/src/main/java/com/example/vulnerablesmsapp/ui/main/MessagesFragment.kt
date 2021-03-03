@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
  * A placeholder fragment containing a simple view.
  */
 class MessagesFragment : Fragment() {
-    private lateinit var recycleViewAdapter: MessagesRecycleViewAdapter
+    private lateinit var recycleViewAdapter: ContactRecycleViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,7 +40,7 @@ class MessagesFragment : Fragment() {
             layoutManager = LinearLayoutManager(activity)
             val topSpacingItemDecoration = TopSpacingItemDecoration(30)
             addItemDecoration(topSpacingItemDecoration)
-            recycleViewAdapter = MessagesRecycleViewAdapter()
+            recycleViewAdapter = ContactRecycleViewAdapter()
             adapter = recycleViewAdapter
         }
 
@@ -48,7 +48,7 @@ class MessagesFragment : Fragment() {
     }
 
     private fun getContacts() {
-        var list: ArrayList<MessagesData> = ArrayList()
+        var list: ArrayList<ContactData> = ArrayList()
         val url = "content://com.example.vulnerablesmsapp.SMSContentProvider/contacts"
         val contacts = Uri.parse(url)
         val cursor = context?.contentResolver?.query(contacts, null, null, null, "name")
@@ -57,7 +57,7 @@ class MessagesFragment : Fragment() {
             if (cursor.moveToFirst()) {
                 do {
                     list.add(
-                            MessagesData(
+                            ContactData(
                                     cursor.getString(1),
                                     cursor.getString(2).toInt(),
                                     cursor.getString(0).toInt()

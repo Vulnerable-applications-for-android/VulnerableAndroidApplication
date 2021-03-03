@@ -32,7 +32,7 @@ class SectionsPagerAdapter(fm: AppCompatActivity) : FragmentStateAdapter(fm) {
                 fragment = MessagesFragment.newInstance()
             }
             1 -> {
-                fragment = CreateMessageFragment.newInstance()
+                fragment = CreateContactFragment.newInstance()
             }
         }
         return fragment

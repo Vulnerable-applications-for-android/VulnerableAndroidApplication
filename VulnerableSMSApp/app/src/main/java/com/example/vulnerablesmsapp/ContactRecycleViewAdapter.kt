@@ -8,9 +8,9 @@ import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.messages_list_item.view.*
 
-class MessagesRecycleViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class ContactRecycleViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var messages: List<MessagesData> = ArrayList()
+    private var messages: List<ContactData> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.messages_list_item, parent, false)
@@ -29,20 +29,20 @@ class MessagesRecycleViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>
         return messages.size
     }
 
-    fun submitList(messagesList: List<MessagesData>) {
-        messages = messagesList
+    fun submitList(contactList: List<ContactData>) {
+        messages = contactList
     }
 
     class MessagesViewHolder constructor(itemView: View): RecyclerView.ViewHolder(itemView) {
         private val name = itemView.name_text_view
 
-        fun bind(messagesData: MessagesData) {
-            name.text = messagesData.name
+        fun bind(contactData: ContactData) {
+            name.text = contactData.name
             itemView.setOnClickListener {
                 val intent = Intent(it.context, MessageActivity::class.java)
-                intent.putExtra("name", messagesData.name)
-                intent.putExtra("id", messagesData.id)
-                intent.putExtra("number", messagesData.number)
+                intent.putExtra("name", contactData.name)
+                intent.putExtra("id", contactData.id)
+                intent.putExtra("number", contactData.number)
                 startActivity(it.context, intent, null)
             }
         }

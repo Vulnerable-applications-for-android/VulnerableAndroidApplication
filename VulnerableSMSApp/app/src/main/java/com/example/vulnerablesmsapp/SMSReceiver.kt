@@ -10,7 +10,7 @@ import android.provider.Telephony
 import android.telephony.SmsMessage
 import android.util.Log
 import android.widget.Toast
-import kotlinx.android.synthetic.main.fragment_create_message.*
+import kotlinx.android.synthetic.main.fragment_create_contact.*
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.util.*
