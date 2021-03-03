@@ -17,7 +17,7 @@ class MessageActivity : AppCompatActivity() {
     private var id = "";
     private var number = "";
     private lateinit var recycleViewAdapter: MessageRecycleViewAdapter
-
+    //TODO auto update messages
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message)
@@ -66,6 +66,7 @@ class MessageActivity : AppCompatActivity() {
     }
 
     private fun sendMessage() {
+        //TODO not working atm!!
         val intent = Intent()
         intent.action = "sendSMSBroadcast"
         intent.putExtra("number", number)

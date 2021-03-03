@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_main.*
  */
 class MessagesFragment : Fragment() {
     private lateinit var recycleViewAdapter: ContactRecycleViewAdapter
-
+    //TODO auto update contacts
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
