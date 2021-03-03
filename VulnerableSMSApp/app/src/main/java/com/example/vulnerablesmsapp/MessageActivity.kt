@@ -32,18 +32,18 @@ class MessageActivity : AppCompatActivity() {
             recycleViewAdapter = MessageRecycleViewAdapter()
             adapter = recycleViewAdapter
         }
-        getMessages();
-
+        getMessages()
         val sendButton = findViewById<Button>(R.id.button_send)
         sendButton.setOnClickListener {
             val message = text_field_message.editText?.text.toString()
             if (message != "") {
                 sendMessage(message)
                 addMessageToDatabase(message)
+                text_field_message.editText?.setText("")
+                getMessages()
             } else {
                 Toast.makeText(this, "Message cannot be blank!", Toast.LENGTH_LONG).show()
             }
-
         }
     }
 

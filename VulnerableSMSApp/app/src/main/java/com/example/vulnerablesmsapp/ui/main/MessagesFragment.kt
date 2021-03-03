@@ -47,6 +47,11 @@ class MessagesFragment : Fragment() {
         getContacts()
     }
 
+    override fun onResume() {
+        super.onResume()
+        getContacts()
+    }
+
     private fun getContacts() {
         var list: ArrayList<ContactData> = ArrayList()
         val url = "content://com.example.vulnerablesmsapp.SMSContentProvider/contacts"
