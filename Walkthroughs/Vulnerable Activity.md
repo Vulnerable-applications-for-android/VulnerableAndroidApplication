@@ -19,5 +19,6 @@ The vulnerable Activity is present within the vulnerable banking app. The way th
 
 ## Fixing the vulnerability
 
+
 ## Summary
-a
+
