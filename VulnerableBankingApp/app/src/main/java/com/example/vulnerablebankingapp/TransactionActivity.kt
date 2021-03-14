@@ -51,7 +51,6 @@ class TransactionActivity : AppCompatActivity() {
                 text_field_amount.error = "The amount must be greater than 0.01!"
             } else if (user != null) {
                 val intent = Intent(this, TransactionService::class.java)
-                intent.putExtra("userUID", user.uid)
                 intent.putExtra("accountNumber", accountNumber)
                 intent.putExtra("amount", amount)
                 startService(intent)

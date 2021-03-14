@@ -10,6 +10,7 @@ import android.util.Log
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -23,14 +24,17 @@ class TransactionService : Service() {
     lateinit var userUID: String
     lateinit var accountNumber: String
     var amount: Int? = null
+    private lateinit var mAuth: FirebaseAuth
 
 
     override fun onStartCommand(intent: Intent, flags: Int, startId: Int): Int {
-        userUID = intent.getStringExtra("userUID") ?: ""
+        mAuth = FirebaseAuth.getInstance()
+        userUID = mAuth.uid.toString()
         accountNumber = intent.getStringExtra("accountNumber") ?: ""
-        amount = intent.getStringExtra("amount").toInt()
+        amount = intent.getStringExtra("amount")?.toInt()
         if (userUID == "" || accountNumber == "" || amount == null) {
             Toast.makeText(this, "Error payment could not be made", Toast.LENGTH_SHORT).show()
+            Log.e("TransactionError", "Intent values: accountNumber: " + accountNumber + " amount: " + amount);
             stopSelf()
         } else {
             Log.e("Service", "Starting transaction")

@@ -20,8 +20,6 @@ class ExportedServiceActivity : AppCompatActivity() {
         val intent = Intent()
         intent.component = ComponentName("com.example.vulnerablebankingapp",
             "com.example.vulnerablebankingapp.TransactionService")
-        //Get UUID from the other app using adb: adb shell am get-current-user
-        intent.putExtra("userUID", "TOJBPevMX1gox9yKqsXZORs2Ftv2")
         intent.putExtra("accountNumber", text_field_account.editText?.text.toString())
         val amount = ((text_field_amount.editText?.text.toString().toFloat() * 100)).toInt()
         intent.putExtra("amount", amount.toString())
