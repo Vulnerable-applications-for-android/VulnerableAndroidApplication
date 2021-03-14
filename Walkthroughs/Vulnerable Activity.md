@@ -55,4 +55,4 @@ Finally run the Malicous app you just created on the Android emulator and click 
 
 
 ## Summary
-
+This walkthrough shows that the vulnerability of using an intent filter without knowing what behavouir this gives the Activity is very dangoures and can give users access to Android components they shoudld not have access too.
