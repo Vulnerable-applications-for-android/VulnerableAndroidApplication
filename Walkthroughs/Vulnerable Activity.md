@@ -23,14 +23,20 @@ First open the app, create an accout and login. Then go to the transaciton tab, 
 
 ### Step 2:
 Now we need to find what the vulnerability is in the app. To do this we will use the the tool Apktool to decrypt the Manifest file of the app. You can download the tool here (https://ibotpeaches.github.io/Apktool/install/). Then run the command apktool d BankingApp.apk in the directory where the apps apk file is (AppData/Local/Android/Sdk/platform-tools). There should now be a file called BankingApp with the decrypted Manifest file within.
+
+
 ![image](https://user-images.githubusercontent.com/45278231/111070666-9c91e780-84ca-11eb-9a46-de7f1fdc23e9.png)
 Lines 15-20 we can see there is an activity called TransactionActivity which has an intent filter. An intent filter specifies what intents the activity component should receive. As you can see the category specified is "android.intent.category.DEFAULT", this means that any implicit intent can start this activity.
 
 
 ### Step 3:
 To exploit the vulnerability create a new project in Android Studio. Edit the activity_main.xml file to have a button like so.
+
+
 ![image](https://user-images.githubusercontent.com/45278231/111070954-e4653e80-84cb-11eb-9b33-1016b3366cf6.png)
 Then in the MainActivity add the on click function and link the function up to the button in the xml file.
+
+
 ![image](https://user-images.githubusercontent.com/45278231/111071009-1bd3eb00-84cc-11eb-9c2c-50f289fa4603.png)
 What this function does is it creates a new intent. The intent is to open the vulnerable TransactionActivity. As you cans see there are two things we need to open the Activity, these are the package name of the app and the class name of the Activiy we wish to start. Both of these can be found from the Manifest file we decomplied.
 
