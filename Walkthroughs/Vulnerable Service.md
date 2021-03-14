@@ -33,7 +33,7 @@ On line 23 we can see a service with "exported=true". This is the vulnerability 
 
 
 ### Step 3:
-
+Next we need to find out if we need to parse any data into the service.
 
 
 ## Fixing the vulnerability
