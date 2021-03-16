@@ -81,5 +81,31 @@ Then go back into the banking app and you will see the payment would have been m
 ![image](https://user-images.githubusercontent.com/45278231/111075223-d7057f80-84de-11eb-9ed7-2e24a4b09143.png)
 
 ## Fixing the vulnerability
+There are two ways you could fix this vulnerability.
+
+
+### First Fix:
+This first is as simple as in the Manifest file set exported to false. This means no other apps will be able to start the Service.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111393609-f5bb7000-86b0-11eb-927c-316bd6dd6c2d.png)
+
+
+### Second Fix:
+The second way to fix the Service would allow only apps you choose to start the Service. To do this you would add a secret key to the intent that starts the Service. 
+
+
+![image](https://user-images.githubusercontent.com/45278231/111394026-cc4f1400-86b1-11eb-8773-108544f8dd86.png)
+
+
+Then when the Service starts you would check if the secret is correct, if it is not correct then terminate the Service.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111393902-8e51f000-86b1-11eb-80aa-3a004f626a23.png)
+
+
+On line 34 you can see getting the secret from the intent and on line 35 checking if the secret is correct.
+
 
 ## Summary
+The exploit presented is haivng an exported service which then allows anyone to make a transaction of their choosing. This is quite an extream example as banking apps won't let you do this but this example is to portray the dangers that come with an exported service.
