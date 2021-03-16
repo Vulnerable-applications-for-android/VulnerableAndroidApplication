@@ -104,7 +104,7 @@ Then when the Service starts you would check if the secret is correct, if it is 
 ![image](https://user-images.githubusercontent.com/45278231/111393902-8e51f000-86b1-11eb-80aa-3a004f626a23.png)
 
 
-On line 34 you can see getting the secret from the intent and on line 35 checking if the secret is correct. For better security a much more secure secret should be used as this one could easily be brute forced.
+On line 35 you can see getting the secret from the intent and on line 36 checking if the secret is correct. For better security a much more secure secret should be used as this one could easily be brute forced.
 
 
 ## Summary
