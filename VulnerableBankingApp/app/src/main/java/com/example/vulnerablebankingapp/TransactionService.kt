@@ -34,7 +34,7 @@ class TransactionService : Service() {
         amount = intent.getStringExtra("amount")?.toInt()
         if (userUID == "" || accountNumber == "" || amount == null) {
             Toast.makeText(this, "Error payment could not be made", Toast.LENGTH_SHORT).show()
-            Log.e("TransactionError", "Intent values: accountNumber: " + accountNumber + " amount: " + amount);
+            Log.e("TransactionError", "Intent values: accountNumber: $accountNumber amount: $amount")
             stopSelf()
         } else {
             Log.e("Service", "Starting transaction")
