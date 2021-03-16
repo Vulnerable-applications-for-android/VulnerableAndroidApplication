@@ -19,7 +19,7 @@ The vulnerable service's purpose in the banking app is to make a transaction and
 
 
 ### Step 1:
-First open the app, create an accout and login (Do not enter any real details or passwords). Then go to the transaciton tab, you can see that you need to re-authorize to be able to make a transaction. Once you have re-authorsied you can make a transaction to a test account with the account number 315544 to see that transactions are working.
+First open the app, create an accout and login (Do not enter any real details or passwords). Then go to the transaciton tab, you can see that you need to re-authorize to be able to make a transaction. Once you have re-authorsied you can make a transaction, to a test send money to the account "315544" to see that transactions are working.
 
 
 ### Step 2:
@@ -104,8 +104,8 @@ Then when the Service starts you would check if the secret is correct, if it is 
 ![image](https://user-images.githubusercontent.com/45278231/111393902-8e51f000-86b1-11eb-80aa-3a004f626a23.png)
 
 
-On line 34 you can see getting the secret from the intent and on line 35 checking if the secret is correct.
+On line 34 you can see getting the secret from the intent and on line 35 checking if the secret is correct. For better security a much more secure secret should be used as this one could easily be brute forced.
 
 
 ## Summary
-The exploit presented is haivng an exported service which then allows anyone to make a transaction of their choosing. This is quite an extream example as banking apps won't let you do this but this example is to portray the dangers that come with an exported service.
+The exploit presented is haivng an exported Service which then allows anyone to make a transaction of their choosing. This is quite an extream example as no banking app would have an exported Service such as this one. However, it is still possible for developers to create exported services which have unwanted behavours. This walkthrough shows that you need to think when using a Service if it should be exported, and if it should then should you only allow certain apps to be able to start it.
