@@ -14,6 +14,10 @@ A foreground Service will always display a notificaiton to the user so the user 
 Bound Service:\
 A bound Service allows other app comopnents to bind onto it. What it means for component to bind to a service is that component can then interact with the Service and do things such as request and receive data.
 
+
+When using Services in a app you must declare the Service within the manifest file for that project.
+
+
 ## How to explopit the vulnerable Service in the "Vulnerable Banking App"!
 If you wish to follow along with the walkthrough (read this guide) on how to set up the vulnerable applications and an Android emulator.
 
