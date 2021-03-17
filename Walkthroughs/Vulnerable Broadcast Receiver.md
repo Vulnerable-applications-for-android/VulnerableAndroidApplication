@@ -14,6 +14,6 @@ If you wish to follow along with the walkthrough (read this guide) on how to set
 
 
 ## Fixing the vulnerability
-
+Android:permission attribute
 
 ## Summary
