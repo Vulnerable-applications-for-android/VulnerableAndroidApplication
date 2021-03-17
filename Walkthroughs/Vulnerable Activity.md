@@ -4,7 +4,7 @@
 The Activity component is one of the main components used when creating Android applications. An Activity is what provides a window where the apps UI is drawn. In general every screen in an app is a different Activity such as in a emailing app the screen showing all of the emails would usually be a differnt Activity to the screen displaying a specific email.
 
 
-When using Activities in a app you must declare the Activity within the manifest file for that project such as in the image bellow.
+When using Activities in a app you must declare the Activity within the manifest file for that project.
 
 
 ## How to explopit the vulnerable Activity in the "Vulnerable Banking App"!
@@ -52,6 +52,16 @@ Finally run the Malicous app you just created on the Android emulator and click 
 
 
 ## Fixing the vulnerability
+To stop the Activity from being vulnerable it needs to not be exported. In Manifest file the Activity has an Intent Filter which makes the Activity exported.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111465159-a4939680-8719-11eb-9301-e0ded01a19b9.png)
+
+
+Therefore to stop it from being exportedyou just need to remove the Intent Filter. The Activity in the Manifest file should then look like below.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111465105-96de1100-8719-11eb-84bc-2a50ff7a3491.png)
 
 
 ## Summary
