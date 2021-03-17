@@ -9,6 +9,8 @@ One way to create a Broadcast Reveicer is to declare it within the Manifest file
 
 
 ## How to explopit the vulnerable Broadcast Receiver in the "Vulnerable SMS App"!
+If you wish to follow along with the walkthrough (read this guide) on how to set up the vulnerable applications and an Android emulator.
+
 
 
 ## Fixing the vulnerability
