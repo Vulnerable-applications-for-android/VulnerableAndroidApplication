@@ -30,6 +30,40 @@ Now we need to find what the action is that the Broadcast Receiver is subscribed
 Open up the decrypted Manifest file. Here we can see that action that the Broadcast Receiver is subscribed too is called "sendSMSBroadcast".
 
 
+![image](https://user-images.githubusercontent.com/45278231/111522377-1d164980-8752-11eb-8979-ca1e143d0da0.png)
+
+
+### Step 4:
+Now we know the name of the action we can start building the app to exploit the Broadcast Receiver. Create a new project in Android studios and change the activity_main.xml file to look like so.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111523151-d83ee280-8752-11eb-82cb-b9ac91a9f148.png)
+![image](https://user-images.githubusercontent.com/45278231/111523176-e0971d80-8752-11eb-81fb-cd22e3ae4ae8.png)
+
+
+### Step 5:
+Then in MainActivity add the function sendMessage().
+
+
+![image](https://user-images.githubusercontent.com/45278231/111523387-248a2280-8753-11eb-9c81-08f5dfa30c17.png)
+
+
+What this function does is it takes the number and message from the EditText fields and adds them to an Intent. The action of the intent is set to "sendSMSBroadcast" which we got from the decrypted manifest file. Then we set the componet of the intent with the package name and class name of the SMS app which we also got from the Manifest file.
+
+
+### Step 6:
+Now build and run the app on the emulator. Enter a message and the number to send the message too. Then click the "send message" button.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111524411-4a63f700-8754-11eb-8032-1c93f0144268.png)
+
+
+Then look in logcat and you should see the number and message showing that the message has been sent. You can also go back into the SMS app and see that you cannot see the message so the user wouldn't know that the message got sent.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111524601-8b5c0b80-8754-11eb-9308-333e1a3eb539.png)
+
+
 ## Fixing the vulnerability
 Add secret to extras string
 
