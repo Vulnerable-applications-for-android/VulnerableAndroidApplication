@@ -15,6 +15,14 @@ If you wish to follow along with the walkthrough (read this guide) on how to set
 The Broadcast Receiver within the SMS app handles sending an SMS message . The reason this Broadcast Receiver is vulneralbe is that any other app can send a Broadcast message to the receiver. This will then send that message to whoever they want without the user knowing. This could then be used in malicouse ways such as going over the users SMS limit and costing them money or sending dangerous links to the users contacts and the message would look like it is from the user.
 
 
+### Step 1:
+First open the app, add a contact and send a message to them too see that the app is working. As you cannot send SMS messages from the emulator instead it logs a logcat to emulate that a message has been sent. You can see this log within logcat in Android Studios. An example of this message is shown below.
+
+
+### Step 2:
+Now we need to find what the vulnerability is in the app. To do this we will use the the tool Apktool to decrypt the Manifest file of the app. You can download the tool here (https://ibotpeaches.github.io/Apktool/install/). Then run the command "apktool d BankingApp.apk" in the directory where the apps apk file is (AppData/Local/Android/Sdk/platform-tools). There should now be a file called BankingApp with the decrypted Manifest file within.
+
+
 ## Fixing the vulnerability
 Add secret to extras string
 
