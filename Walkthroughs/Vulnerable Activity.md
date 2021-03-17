@@ -4,7 +4,7 @@
 The Activity component is one of the main components used when creating Android applications. An Activity is what provides a window where the apps UI is drawn. In general every screen in an app is a different Activity such as in a emailing app the screen showing all of the emails would usually be a differnt Activity to the screen displaying a specific email.
 
 
-When using Activities in a app you must declare the Activity within the manifest file for that project such as in the image bellow.
+When using Activities in a app you must declare the Activity within the manifest file for that project.
 
 
 ## How to explopit the vulnerable Activity in the "Vulnerable Banking App"!
