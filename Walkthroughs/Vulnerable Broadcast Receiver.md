@@ -77,3 +77,4 @@ Then in the SMS app when it sends a Broadcast message add the secret too the int
 
 
 ## Summary
+The SMS app has a Broadcast Receiver which sends an SMS message. The Broadcast Receiver is vulnerable because it does not check who sent a Broadcast message for it so a malicouse app could send SMS messages from the phone without the using knowing. When using a Broadcast Receiver you should always consider if you want anyone to be able to send a Broadcast message to the Receiver as depending on what the Receiver does this could be used in malicouse ways.
