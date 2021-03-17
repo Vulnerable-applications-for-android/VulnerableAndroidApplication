@@ -1,8 +1,11 @@
 package com.example.vulnerablesmsapp
 
+import android.Manifest
+import android.content.ComponentName
 import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -11,6 +14,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import kotlinx.android.synthetic.main.activity_message.*
 import java.time.LocalDateTime
@@ -77,12 +81,11 @@ class MessageActivity : AppCompatActivity() {
     }
 
     private fun sendMessage(message: String) {
-        //TODO not working atm!!
         val intent = Intent()
         intent.action = "sendSMSBroadcast"
         intent.putExtra("number", number)
         intent.putExtra("message", message)
-        //intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+        intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
         sendBroadcast(intent)
     }
 
@@ -94,4 +97,5 @@ class MessageActivity : AppCompatActivity() {
         messageValues.put(SMSContentProvider.TIMESTAMP, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toInt())
         this.contentResolver?.insert(SMSContentProvider.CONTENT_URI_MESSAGES, messageValues)
     }
+
 }
