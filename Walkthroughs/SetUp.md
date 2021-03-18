@@ -5,7 +5,7 @@ First install Android Studios from here https://developer.android.com/studio.
 
 
 ### Step 2:
-Next install the VulnerableSMSApp and VulnerableBankingApp APK files from here (Insert link here).
+Next install the VulnerableSMSApp and VulnerableBankingApp APK files from here https://github.com/FraserGrandfield/VulnerableAndroidApplication/tree/main/AppAPKFiles.
 
 
 ### Step 3:
