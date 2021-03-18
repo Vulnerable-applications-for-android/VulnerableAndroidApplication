@@ -49,7 +49,36 @@ Now we need to use the tool DB Browser for SQLite to open the database file and 
 
 
 ### Step 5:
-Now that we have all of the information required to exploit the Content Provider we can make a malicouse app to do that.
+Now that we have all of the information required to exploit the Content Provider we can make a malicouse app to do that. First create a new project in Android Studios. Then change the activity_main.xml to look like the following.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111557726-240a7f80-8785-11eb-8437-a1c41d874a9f.png)
+![image](https://user-images.githubusercontent.com/45278231/111557774-384e7c80-8785-11eb-86eb-25057db68f91.png)
+
+
+### Step 6:
+Then in Main Activity add these two functions.
+
+![image](https://user-images.githubusercontent.com/45278231/111558532-d4c54e80-8786-11eb-9be5-eadce6629364.png)
+![image](https://user-images.githubusercontent.com/45278231/111558415-9fb8fc00-8786-11eb-9ed2-0700975f18e6.png)
+
+
+The function "addSMSMessageOnClick" will check if the content provider already has the number the user wishes to add into the database. If the number already exists then just the message is added, otherwise the new contact and message is added. The second function getIdFromNumber gets the primary key id from the database which relates to the number entered by the user. As you can see on lines 25-27 we have used the authority string and the table names which we found out from the Manifest and SMS.db file.
+
+
+### Step 7:
+Finally we can build and run the malicouse app on the emulator. You can enter a number, name for who it looks like the message is from and then click the "Add maliciouse SMS message" button.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111559385-510c6180-8788-11eb-8dcc-5dd5392ac9be.png)
+
+
+Then when you go into the SMS app you will have a message from that number with the message.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111559440-6bded600-8788-11eb-87fe-ba20d49728e2.png)
+![image](https://user-images.githubusercontent.com/45278231/111559455-7305e400-8788-11eb-9623-57a96fb8faba.png)
+
 
 ## Fixing the vulnerability
 (Fix change exported to false. Talk about other fixes could be siging it so only your other apps can use the Content Provider)
