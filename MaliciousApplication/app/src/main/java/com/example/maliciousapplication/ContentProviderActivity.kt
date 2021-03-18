@@ -21,7 +21,7 @@ class ContentProviderActivity : AppCompatActivity(){
         setContentView(R.layout.activity_content_provider)
     }
 
-    fun buttonSendSMSOnClick(view: View) {
+    fun addSMSMessageOnClick(view: View) {
         val PROVIDER_NAME = "com.example.vulnerablesmsapp.SMSContentProvider"
         val URL_CONTACTS = "content://$PROVIDER_NAME/contacts"
         val URL_MESSAGES = "content://$PROVIDER_NAME/messages"
