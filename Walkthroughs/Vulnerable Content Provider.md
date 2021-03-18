@@ -41,7 +41,7 @@ Then go to the folder "data/data/com.example.vulnerablesmsapp/databases". Right 
 ![image](https://user-images.githubusercontent.com/45278231/111556613-e99fe300-8782-11eb-825e-aac9434fab71.png)
 
 
-Now we need to use the tool DB Browser for SQLite to open the database file and read it. You can download the latest version of the tool here https://sqlitebrowser.org/blog/version-3-12-1-released/. Once you have installed the program, open it and go to "file->Open Database" and open the SMS.db file you saved. It should then show you four tables. We are only interested in two of these which are "contacts" and "messages". You can expand these tables to then see the field names within.
+Now we need to use the tool DB Browser for SQLite to open the database file and read it. You can download the latest version of the tool [here](https://sqlitebrowser.org/blog/version-3-12-1-released/). Once you have installed the program, open it and go to "file->Open Database" and open the SMS.db file you saved. It should then show you four tables. We are only interested in two of these which are "contacts" and "messages". You can expand these tables to then see the field names within.
 
 
 ![image](https://user-images.githubusercontent.com/45278231/111556891-82366300-8783-11eb-91a3-fac6b9bef641.png)
