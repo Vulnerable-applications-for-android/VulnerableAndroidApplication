@@ -94,6 +94,4 @@ However an issue with this is if you wish certain other apps to be able to use t
 Finally, another way to make the Content Provider more secure would be to encrypt the data when storing it and then decrypt it when you wish to access it. An example encryption algorithm you could use is AES.
 
 ## Summary
-
-
-(One reason for using a content provider like this is if you wish wigits to access the data and display to the user.)
+The Content Provider component provides an easy way to access a centeral repository of data. In the case of the SMS app this stores the users contacts and messages. As the Content Provider has exported set to "true" it is vulnerable as other apps have access to it. As one of the reasons to use a Content Provider is to share the data with other apps and widgets you might wish to have exported to true but you may wish to only give access to certain apps. The way to do this would be to give your app and the apps you wish to share the data with the same signiture. As a Content Provider could store any data this walkthrough shows the dangers of one being vulernable especially if it has access to sensative data such as the users address.
