@@ -82,6 +82,16 @@ Then when you go into the SMS app you will have a message from that number with 
 
 ## Fixing the vulnerability
 (Fix change exported to false. Talk about other fixes could be siging it so only your other apps can use the Content Provider)
+One way to fix the vulnerability would be to set the Content Provider attribute exported to false as shown below.
+
+
+![image](https://user-images.githubusercontent.com/45278231/111640611-41c2fd80-87f4-11eb-815e-3c75616ea2b3.png)
+
+
+However an issue with this is if you wish certain other apps to be able to use the Content Provider and access the data. So a way around this is to add a signiture to the Content Provider
+
+
+Another way to make the Content Provider more secure would be to encrypt the data when storing it and then decrypt it when you wish to access it.
 
 ## Summary
 
