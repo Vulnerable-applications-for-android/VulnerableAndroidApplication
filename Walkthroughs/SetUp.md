@@ -1,11 +1,11 @@
 # This document explains how to set up the vulnerable apps to be able to follow the walkthroughs.
 
 ### Step 1:
-First install Android Studios from here https://developer.android.com/studio.
+First install Android Studios from [here.](https://developer.android.com/studio)
 
 
 ### Step 2:
-Next install the VulnerableSMSApp and VulnerableBankingApp APK files from here https://github.com/FraserGrandfield/VulnerableAndroidApplication/tree/main/AppAPKFiles.
+Next install the VulnerableSMSApp and VulnerableBankingApp APK files from [here.](https://github.com/FraserGrandfield/VulnerableAndroidApplication/tree/main/AppAPKFiles)
 
 
 ### Step 3:
@@ -37,4 +37,4 @@ Now you should have both of the vulnerable apps on the emulator.
 
 
 ## Possible issues
-If the emulator doesn't start with no warnings this could be because virtualization is turned off in the bios. Here is a guide on how to turn this on https://2nwiki.2n.cz/pages/viewpage.action?pageId=75202968#:~:text=ON%20the%20System.-,Press%20F2%20key%20at%20startup%20BIOS%20Setup.,changes%20and%20Reboot%20into%20Windows.
+If the emulator doesn't start and gives no warnings this could be because virtualization is turned off in the bios. Here is a [guide](https://2nwiki.2n.cz/pages/viewpage.action?pageId=75202968#:~:text=ON%20the%20System.-,Press%20F2%20key%20at%20startup%20BIOS%20Setup.,changes%20and%20Reboot%20into%20Windows) on how to turn this on. 
