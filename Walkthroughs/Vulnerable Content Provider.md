@@ -20,7 +20,7 @@ First open the app as you will need to set the app as your messaging app to be a
 
 
 ### Step 2:
-
+Now we need to find what the vulnerability is in the app. To do this we will use the the tool Apktool to decrypt the Manifest file of the app. You can download the tool here (https://ibotpeaches.github.io/Apktool/install/). Then run the command "apktool d VulnerableSMSApp.apk" in the directory where the apps apk file is (AppData/Local/Android/Sdk/platform-tools). There should now be a file called BankingApp with the decrypted Manifest file within.
 
 ### Step 3:
 Use android studio and DB Browser for SQLite to find database tables and fields.
