@@ -9,8 +9,7 @@ When using Content Providers in an app you must declare the Content Provider wit
 
 
 ## How to explopit the vulnerable Content Provider in the "Vulnerable SMS App"!
-If you wish to follow along with the walkthrough (read this guide) on how to set up the vulnerable applications and an Android emulator.
-
+If you wish to follow along with the walkthrough then read [this guide](https://github.com/FraserGrandfield/VulnerableAndroidApplication/blob/main/Walkthroughs/SetUp.md) on how to set up the vulnerable applications and an Android emulator.
 
 The Content Provider within the SMS app controls the access to the messages the user has sent and received. The current issue is the Content Provider is exported. This means that any other app can access the Content Provider and  use it too query or insert data. As this is an SMS app a maliocuse application could use the Content Provider to insert a text which looks like its from the bank with a malicouse link.
 
