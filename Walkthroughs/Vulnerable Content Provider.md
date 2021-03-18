@@ -19,7 +19,7 @@ First open the app as you will need to set the app as your messaging app to be a
 
 
 ### Step 2:
-Now we need to find what the vulnerability is in the app. To do this we will use the the tool Apktool to decrypt the Manifest file of the app. You can download the tool here (https://ibotpeaches.github.io/Apktool/install/). Then run the command "apktool d VulnerableSMSApp.apk" in the directory where the apps apk file is (AppData/Local/Android/Sdk/platform-tools). There should now be a file called VulnerableSMSApp with the decrypted Manifest file within.
+Now we need to find what the vulnerability is in the app. To do this we will use the the tool Apktool to decrypt the Manifest file of the app. You can download the tool [here](https://ibotpeaches.github.io/Apktool/install/). Then run the command `apktool d VulnerableSMSApp.apk` in the directory where the apps apk file is (AppData/Local/Android/Sdk/platform-tools). There should now be a file called VulnerableSMSApp with the decrypted Manifest file within.
 
 
 ### Step 5:
@@ -87,7 +87,7 @@ One way to fix the vulnerability would be to set the Content Provider attribute 
 ![image](https://user-images.githubusercontent.com/45278231/111640611-41c2fd80-87f4-11eb-815e-3c75616ea2b3.png)
 
 
-However an issue with this is if you wish certain other apps to be able to use the Content Provider and access the data they won't be able too. So a way around this is to add a signiture to the app. The way this works is if an app then requests to use the Content Provider, if it is also signed with the same signiutre then the system will allow the app to use the component. You can read more information here http://blog.sqisland.com/2011/11/android-protect-contentprovider-with.html.
+However an issue with this is if you wish certain other apps to be able to use the Content Provider and access the data they won't be able too. So a way around this is to add a signiture to the app. The way this works is if an app then requests to use the Content Provider, if it is also signed with the same signiutre then the system will allow the app to use the component. You can read more information [here.](http://blog.sqisland.com/2011/11/android-protect-contentprovider-with.html)
 
 
 Finally, another way to make the Content Provider more secure would be to encrypt the data when storing it and then decrypt it when you wish to access it. An example encryption algorithm you could use is AES.
