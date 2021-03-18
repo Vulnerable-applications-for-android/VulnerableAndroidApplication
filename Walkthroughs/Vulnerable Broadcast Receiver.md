@@ -9,8 +9,7 @@ One way to create a Broadcast Reveicer is to declare it within the Manifest file
 
 
 ## How to explopit the vulnerable Broadcast Receiver in the "Vulnerable SMS App"!
-If you wish to follow along with the walkthrough (read this guide) on how to set up the vulnerable applications and an Android emulator.
-
+If you wish to follow along with the walkthrough then read [this guide](https://github.com/FraserGrandfield/VulnerableAndroidApplication/blob/main/Walkthroughs/SetUp.md) on how to set up the vulnerable applications and an Android emulator.
 
 The Broadcast Receiver within the SMS app handles sending an SMS message . The reason this Broadcast Receiver is vulneralbe is that any other app can send a Broadcast message to the receiver. This will then send that message to whoever they want without the user knowing. This could then be used in malicouse ways such as going over the users SMS limit and costing them money or sending dangerous links to the users contacts and the message would look like it is from the user.
 
