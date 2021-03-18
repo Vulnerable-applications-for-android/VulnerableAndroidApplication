@@ -19,7 +19,7 @@ First open the app, create an accout and login (Do not enter any real details or
 
 
 ### Step 2:
-Now we need to find what the vulnerability is in the app. To do this we will use the the tool Apktool to decrypt the Manifest file of the app. You can download the tool [here](https://ibotpeaches.github.io/Apktool/install/). Then run the command apktool d BankingApp.apk in the directory where the apps apk file is (AppData/Local/Android/Sdk/platform-tools). There should now be a file called VulnerableBankingApp with the decrypted Manifest file within.
+Now we need to find what the vulnerability is in the app. To do this we will use the the tool Apktool to decrypt the Manifest file of the app. You can download the tool [here](https://ibotpeaches.github.io/Apktool/install/). Then run the command `apktool d VulnerableBankingApp.apk` in the directory where the apps apk file is (AppData/Local/Android/Sdk/platform-tools). There should now be a file called VulnerableBankingApp with the decrypted Manifest file within.
 
 
 ![image](https://user-images.githubusercontent.com/45278231/111070666-9c91e780-84ca-11eb-9a46-de7f1fdc23e9.png)
