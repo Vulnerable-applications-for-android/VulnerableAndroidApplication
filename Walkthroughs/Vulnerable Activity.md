@@ -14,15 +14,12 @@ If you wish to follow along with the walkthrough then read [this guide](https://
 The vulnerable Activity is present within the vulnerable banking app. The way the banking app works is it remembers the user who last logged on so that they can esily view there balance without having to keep entering their password. However for the user to make a transaction and send money the user must re-authorize by entering in their account email and password to stop unauthorised transactions. The exploit with the activity is it will let an attacker bypass the re-authenticate screen and go straight to the transcation page. This is dangourse as the attacker could make a transaction on the users account without needing to know the users logging details.
 
 
-User adb install -r -t BankingApp.apk to install the app.
-
-
 ### Step 1:
 First open the app, create an accout and login (Do not enter any real details or passwords). Then go to the transaciton tab, you can see that you need to re-authorize to be able to make a transaction. Once you have re-authorsied you can make a transaction to a test account with the account number 315544 to see that transactions are working.
 
 
 ### Step 2:
-Now we need to find what the vulnerability is in the app. To do this we will use the the tool Apktool to decrypt the Manifest file of the app. You can download the tool [here](https://ibotpeaches.github.io/Apktool/install/). Then run the command apktool d BankingApp.apk in the directory where the apps apk file is (AppData/Local/Android/Sdk/platform-tools). There should now be a file called BankingApp with the decrypted Manifest file within.
+Now we need to find what the vulnerability is in the app. To do this we will use the the tool Apktool to decrypt the Manifest file of the app. You can download the tool [here](https://ibotpeaches.github.io/Apktool/install/). Then run the command apktool d BankingApp.apk in the directory where the apps apk file is (AppData/Local/Android/Sdk/platform-tools). There should now be a file called VulnerableBankingApp with the decrypted Manifest file within.
 
 
 ![image](https://user-images.githubusercontent.com/45278231/111070666-9c91e780-84ca-11eb-9a46-de7f1fdc23e9.png)
