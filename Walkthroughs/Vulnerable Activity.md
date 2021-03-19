@@ -49,17 +49,17 @@ Finally run the Malicous app you just created on the Android emulator and click 
 
 
 ## Fixing the vulnerability
-To stop the Activity from being vulnerable it needs to not be exported. In Manifest file the Activity has an Intent Filter which makes the Activity exported.
+To stop the Activity from being vulnerable it needs to not be exported. In Manifest file the Activity has an Intent Filter which makes the Activity exported by defualt.
 
 
 ![image](https://user-images.githubusercontent.com/45278231/111465159-a4939680-8719-11eb-9301-e0ded01a19b9.png)
 
 
-Therefore to stop it from being exportedyou just need to remove the Intent Filter. The Activity in the Manifest file should then look like below.
+Therefore to stop it from being exported you just need to remove the Intent Filter. The Activity in the Manifest file should then look like below.
 
 
 ![image](https://user-images.githubusercontent.com/45278231/111465105-96de1100-8719-11eb-84bc-2a50ff7a3491.png)
 
 
 ## Summary
-This walkthrough shows that the vulnerability of using an intent filter without knowing what behavouir this gives the Activity is very dangoures and can give users access to Android components they shoudld not have access too. The walkthrough should show you the importance of understanding your own code so it doesn't have unwanted behaviours which could put the user at risk.
+This walkthrough shows that using an Intent filter without knowing what behaviours this can create can cause vulnerabilities. These vulnerabilities can be dangerous and can give users access to Android components they shoudld not have access too. The walkthrough should show you the importance of understanding your own code works so it doesn't have unwanted behaviours which could put the user at risk.
