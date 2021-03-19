@@ -41,7 +41,7 @@ Then in the MainActivity add the on click function and link the function up to t
 ![image](https://user-images.githubusercontent.com/45278231/111071009-1bd3eb00-84cc-11eb-9c2c-50f289fa4603.png)
 
 
-What this function does is it creates a new intent. The intent is to open the vulnerable TransactionActivity. As you cans see there are two things we need to open the Activity, these are the package name of the app and the class name of the Activiy we wish to start. Both of these can be found from the Manifest file we decomplied.
+What this function does is it creates a new intent. The intent is to open the vulnerable TransactionActivity. As you cans see there are two things we need to open the Activity, these are the package name of the app and the class name of the Activiy we wish to start. Both of these can be found from the Manifest file we decrypted.
 
 
 ### Step 4:
