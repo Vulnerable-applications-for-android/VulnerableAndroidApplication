@@ -25,7 +25,7 @@ The vulnerable service's purpose in the banking app is to make a transaction and
 
 
 ### Step 1:
-First open the app, create an accout and login (Do not enter any real details or passwords). Then go to the transaciton tab, you can see that you need to re-authorize to be able to make a transaction. Once you have re-authorsied you can make a transaction, to a test send money to the account "315544" to see that transactions are working.
+First open the app, create an accout and login (Do not enter any real details or passwords). Then go to the transaciton tab, you can see that you need to re-authorize to be able to make a transaction. Once you have re-authorsied you can make a transaction to a test that it works. Send money to the test account "315544" to see that transactions are working.
 
 
 ### Step 2:
