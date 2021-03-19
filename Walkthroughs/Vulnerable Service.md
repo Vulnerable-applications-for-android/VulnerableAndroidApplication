@@ -15,7 +15,7 @@ Bound Service:\
 A bound Service allows other app comopnents to bind onto it. What it means for component to bind to a service is that component can then interact with the Service and do things such as request and receive data.
 
 
-When using Services in a app you must declare the Service within the manifest file for that project.
+When using Services in a app you must declare the Service within the Manifest file for that project.
 
 
 ## How to explopit the vulnerable Service in the "Vulnerable Banking App"!
