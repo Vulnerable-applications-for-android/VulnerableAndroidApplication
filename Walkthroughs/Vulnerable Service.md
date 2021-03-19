@@ -35,7 +35,7 @@ Now we need to find what the vulnerability is in the app. To do this we will use
 ![image](https://user-images.githubusercontent.com/45278231/111073050-15963c80-84d5-11eb-88f0-d61a811060d4.png)
 
 
-On line 23 we can see a service with "exported=true". This is the vulnerability as we can then start this service from another app wihtout needing any sort of permissions. Also, we can see the name of the service is TransactionService so you can tell it is used to make a transaction.
+On line 23 we can see a service with "exported=true". This is the vulnerability as we can then start this service from another app without needing any sort of permissions. Also, we can see the name of the service is TransactionService so you can tell it is used to make a transaction.
 
 
 ### Step 3:
@@ -45,13 +45,13 @@ Now lets create an app to exploit the service. First create a new project in And
 ![image](https://user-images.githubusercontent.com/45278231/111073790-04026400-84d8-11eb-96f9-bdb89206362d.png)
 
 
-Next in MainActivity add the function and link the function to the button just created.
+Next in MainActivity add the function and link the function to the button you just created.
 
 
 ![image](https://user-images.githubusercontent.com/45278231/111073833-357b2f80-84d8-11eb-8046-e5b963578d36.png)
 
 
-This function creates an intent which will start the service. Two parameters are need which is the package name of the vulneranlbe bankjing app and the class name of the Service compoentn we want to start. You get both of these from the manifest file we decompiled. Next run the malicouse app on the emulator. Before we try to run the vulnerable service because the service is a backgroud service the vulnerable app must be open for this to work. All you need to do is open the app and then minimize it for this to work. Now we can click the button to exploit the Service.
+This function creates an intent which will start the service. Two parameters are need which is the package name of the vulneranlbe banking app and the class name of the Service component we want to start. You get both of these from the Manifest file we decrypted. Next build and run the malicious app on the emulator. Before we try to run the vulnerable service because the service is a backgroud service the vulnerable app must be open for this to work. All you need to do is open the app and then minimize it for this to work. Now we can click the button to exploit the Service.
 
 
 ![image](https://user-images.githubusercontent.com/45278231/111074162-9e16dc00-84d9-11eb-8f8f-e116cc7ba52e.png)
@@ -75,7 +75,7 @@ And then lets take these values and add them to the intent to be parsed to the s
 ![image](https://user-images.githubusercontent.com/45278231/111075067-197a8c80-84de-11eb-992c-985575f714b8.png)
 
 
-Above is what the new function should look like. Now build and run the malicouse app on the emulator, input an account number (892386) and amount to send money too and click the button to start the TransactionService.
+Above is what the new function should look like. Now build and run the malicious-- app on the emulator, input an account number (892386) and amount to send money too and click the button to start the TransactionService.
 
 
 ![image](https://user-images.githubusercontent.com/45278231/111075195-b63d2a00-84de-11eb-8e5c-41ef2edcf5b1.png)
@@ -114,4 +114,4 @@ On line 35 you can see getting the secret from the intent and on line 36 checkin
 
 
 ## Summary
-The exploit presented is haivng an exported Service which then allows anyone to make a transaction of their choosing. This is quite an extream example as no banking app would have an exported Service such as this one. However, it is still possible for developers to create exported services which have unwanted behavours. This walkthrough shows that you need to think when using a Service if it should be exported, and if it should then should you only allow certain apps to be able to start it.
+The exploit presented is haivng an exported Service which then allows anyone to make a transaction to an account of their choosing. This is quite an extream example as no banking app would have an exported Service such as this one. However, it is still possible for developers to create exported services which have unwanted behavours. This walkthrough shows that you need to think when using a Service if it should be exported, and if it should then should you only allow certain apps to be able to start it.
