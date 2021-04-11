@@ -28,11 +28,11 @@ class MessageActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_message)
-        name_text_view.text = intent.extras?.get("name").toString()
+        name_text_view.text = "Name: " + intent.extras?.get("name").toString()
         id = intent.extras?.get("id").toString()
         Log.e("IDERROR", id);
         number = intent.extras?.get("number").toString()
-        number_text_view.text = number
+        number_text_view.text = "Number: " + number
         recycler_view.apply {
             layoutManager = LinearLayoutManager(this.context)
             recycleViewAdapter = MessageRecycleViewAdapter()
