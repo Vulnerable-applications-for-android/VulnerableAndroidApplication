@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MaliciousApplication</string>
+    <string name="app_name">MaliciousApp</string>
     <string name="account_number">Account Number</string>
     <string name="amount">amount</string>
     <string name="phone_number">Phone Number</string>
