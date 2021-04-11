@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">VulnerableBankingApp</string>
+    <string name="app_name">BankingApp</string>
     <string name="title_overview">Overview</string>
     <string name="title_transaction">Transaction</string>
     <string name="title_settings">Settings</string>
