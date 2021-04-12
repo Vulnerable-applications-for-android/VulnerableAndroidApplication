@@ -62,4 +62,4 @@ Therefore to stop it from being exported you just need to remove the Intent Filt
 
 
 ## Summary
-This walkthrough shows that using an Intent filter without knowing what behaviours this can create can cause vulnerabilities. These vulnerabilities can be dangerous and can give users access to Android components they shoudld not have access too. The walkthrough should show you the importance of understanding your own code works so it doesn't have unwanted behaviours which could put the user at risk.
+This walkthrough shows that using an Intent filter without knowing what behaviours this can create can cause vulnerabilities. These vulnerabilities can be dangerous and can give users access to Android components they should not have access too. The walkthrough should show you the importance of understanding your own code works so it doesn't have unwanted behaviours which could put the user at risk.
