@@ -1,10 +1,7 @@
 package com.example.vulnerablesmsapp
 
 import android.Manifest
-import android.content.ComponentName
-import android.content.ContentValues
-import android.content.Context
-import android.content.Intent
+import android.content.*
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Bundle
@@ -53,6 +50,12 @@ class MessageActivity : AppCompatActivity() {
             val hideKeyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             hideKeyboard.hideSoftInputFromWindow(constraint_layout_message.windowToken, 0)
         }
+        registerReceiver(broadcastReceiver, IntentFilter("newMessageAdded"))
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        unregisterReceiver(broadcastReceiver)
     }
 
     private fun getMessages() {
@@ -96,6 +99,12 @@ class MessageActivity : AppCompatActivity() {
         messageValues.put(SMSContentProvider.IS_USER, 1)
         messageValues.put(SMSContentProvider.TIMESTAMP, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toInt())
         this.contentResolver?.insert(SMSContentProvider.CONTENT_URI_MESSAGES, messageValues)
+    }
+
+    var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            getMessages()
+        }
     }
 
 }

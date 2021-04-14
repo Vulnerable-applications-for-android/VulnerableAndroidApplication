@@ -10,6 +10,7 @@ import android.provider.Telephony
 import android.telephony.SmsMessage
 import android.util.Log
 import android.widget.Toast
+import com.example.vulnerablesmsapp.ui.main.MessagesFragment
 import kotlinx.android.synthetic.main.fragment_create_contact.*
 import java.time.LocalDateTime
 import java.time.ZoneOffset
@@ -21,7 +22,6 @@ class SMSReceiver : BroadcastReceiver() {
         val messages = Telephony.Sms.Intents.getMessagesFromIntent(intent)
         val message = messages?.get(0)?.messageBody
         val number = messages[0].displayOriginatingAddress
-        Toast.makeText(context,message + " " + number,Toast.LENGTH_LONG).show()
         val id = context?.let { ContentProviderController.getIdFromNumber(number, it) }
         if (id == "") {
             val values =  ContentValues()
@@ -29,7 +29,7 @@ class SMSReceiver : BroadcastReceiver() {
             values.put(SMSContentProvider.NUMBER, number)
 
             context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_CONTACTS, values)
-
+1
             val contactId = ContentProviderController.getIdFromNumber(number, context);
             val messageValues = ContentValues()
             messageValues.put(SMSContentProvider.ID_CONTACT, contactId)
@@ -45,5 +45,8 @@ class SMSReceiver : BroadcastReceiver() {
             messageValues.put(SMSContentProvider.TIMESTAMP, LocalDateTime.now().toEpochSecond(ZoneOffset.UTC).toInt())
             context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_MESSAGES, messageValues)
         }
+        val intent = Intent()
+        intent.action = "newMessageAdded"
+        context?.sendBroadcast(intent)
     }
 }

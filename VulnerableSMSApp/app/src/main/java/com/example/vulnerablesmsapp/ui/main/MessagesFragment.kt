@@ -1,5 +1,9 @@
 package com.example.vulnerablesmsapp.ui.main
 
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
+import android.content.IntentFilter
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -7,19 +11,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.vulnerablesmsapp.*
+import com.example.vulnerablesmsapp.ContactData
+import com.example.vulnerablesmsapp.ContactRecycleViewAdapter
+import com.example.vulnerablesmsapp.R
+import com.example.vulnerablesmsapp.TopSpacingItemDecoration
 import kotlinx.android.synthetic.main.fragment_main.*
 
-/**
- * A placeholder fragment containing a simple view.
- */
+
 class MessagesFragment : Fragment() {
     private lateinit var recycleViewAdapter: ContactRecycleViewAdapter
     //TODO auto update contacts
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -43,13 +49,18 @@ class MessagesFragment : Fragment() {
             recycleViewAdapter = ContactRecycleViewAdapter()
             adapter = recycleViewAdapter
         }
-
         getContacts()
     }
 
     override fun onResume() {
         super.onResume()
         getContacts()
+        context?.registerReceiver(broadcastReceiver, IntentFilter("newMessageAdded"))
+    }
+
+    override fun onPause() {
+        super.onPause()
+        context?.unregisterReceiver(broadcastReceiver)
     }
 
     private fun getContacts() {
@@ -77,4 +88,9 @@ class MessagesFragment : Fragment() {
         recycleViewAdapter.notifyDataSetChanged()
     }
 
+    var broadcastReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent?) {
+            getContacts()
+        }
+    }
 }
