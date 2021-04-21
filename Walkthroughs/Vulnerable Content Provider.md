@@ -80,7 +80,6 @@ Then when you go into the SMS app you will have a message from that number with 
 
 
 ## Fixing the vulnerability
-(Fix change exported to false. Talk about other fixes could be siging it so only your other apps can use the Content Provider)
 One way to fix the vulnerability would be to set the Content Provider attribute exported to false as shown below.
 
 
