@@ -13,10 +13,10 @@ class ActivityAccessActivity : AppCompatActivity() {
     }
 
     fun buttonActivityAccessOnclick(view: View) {
-        val intent = Intent()
-        intent.component = ComponentName("com.example.vulnerablebankingapp",
-                "com.example.vulnerablebankingapp.TransactionActivity")
-        startActivity(intent)
+val intent = Intent()
+intent.component = ComponentName("com.example.vulnerablebankingapp",
+        "com.example.vulnerablebankingapp.TransactionActivity")
+startActivity(intent)
         finish()
     }
 }
