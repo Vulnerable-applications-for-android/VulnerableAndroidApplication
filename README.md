@@ -1,5 +1,5 @@
 # VulnerableAndroidApplication
-Vulnerable Android Applications is a tool to learn how to find vulnerabilites within you own Android Applications and how to fix them. The vulnerabilites are based on four Android components which are:
+Vulnerable Android Applications is a tool to learn about component level vulnerabilites within Android Applications and how to fix them. The vulnerabilites are based on four Android components which are:
 * Actvity
 * Service
 * Broadcast Receiver
