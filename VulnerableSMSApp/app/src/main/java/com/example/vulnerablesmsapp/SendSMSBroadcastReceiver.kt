@@ -13,7 +13,7 @@ class SendSMSBroadcastReceiver : BroadcastReceiver() {
             val message = intent.extras!!.get("message") as String
             //val smsManager = SmsManager.getDefault()
             //smsManager.sendTextMessage(phoneNumber, null, message, null, null)
-            Log.v("smsSend", "SMS sent to $phoneNumber with message: $message")
+            Log.i("smsSend", "SMS sent to $phoneNumber with message: $message")
         }
     }
 }

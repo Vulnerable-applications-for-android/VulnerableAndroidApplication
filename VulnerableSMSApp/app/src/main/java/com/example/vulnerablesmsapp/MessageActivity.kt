@@ -89,6 +89,7 @@ class MessageActivity : AppCompatActivity() {
         intent.putExtra("number", number)
         intent.putExtra("message", message)
         intent.addFlags(Intent.FLAG_INCLUDE_STOPPED_PACKAGES)
+        intent.component = ComponentName("com.example.vulnerablesmsapp", "com.example.vulnerablesmsapp.SendSMSBroadcastReceiver")
         sendBroadcast(intent)
     }
 

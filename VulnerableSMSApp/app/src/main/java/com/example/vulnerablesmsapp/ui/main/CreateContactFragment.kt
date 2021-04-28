@@ -36,6 +36,8 @@ class CreateContactFragment : Fragment() {
                         this.context?.let { it1 -> ContentProviderController.getIdFromNumber(number, it1) }
                 if (contactId == "") {
                     context?.contentResolver?.insert(SMSContentProvider.CONTENT_URI_CONTACTS, values)
+                    text_field_name.editText?.setText("")
+                    text_field_number.editText?.setText("")
                     Toast.makeText(context, "Contact added", Toast.LENGTH_LONG).show()
                 } else {
                     Toast.makeText(context, "Contact Already exists with that number", Toast.LENGTH_LONG).show()

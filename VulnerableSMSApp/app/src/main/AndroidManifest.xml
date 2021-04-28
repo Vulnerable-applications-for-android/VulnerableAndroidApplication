@@ -45,5 +45,4 @@
             android:authorities="com.example.vulnerablesmsapp.SMSContentProvider"
             android:exported="true"/>
     </application>
-
 </manifest>
