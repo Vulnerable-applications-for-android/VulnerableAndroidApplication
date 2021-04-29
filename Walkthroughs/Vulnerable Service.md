@@ -75,7 +75,7 @@ And then lets take these values and add them to the intent to be parsed to the s
 ![image](https://user-images.githubusercontent.com/45278231/111075067-197a8c80-84de-11eb-992c-985575f714b8.png)
 
 
-Above is what the new function should look like. Now build and run the malicious-- app on the emulator, input an account number (892386) and amount to send money too and click the button to start the TransactionService.
+Above is what the new function should look like. Now build and run the malicious app on the emulator, input an account number (892386) and amount to send money too and click the button to start the TransactionService.
 
 
 ![image](https://user-images.githubusercontent.com/45278231/111075195-b63d2a00-84de-11eb-8e5c-41ef2edcf5b1.png)
