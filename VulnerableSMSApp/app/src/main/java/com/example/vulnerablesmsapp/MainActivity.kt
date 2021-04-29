@@ -16,9 +16,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
-    //TODO reason for using a content provider "You want to expose your application data to widgets."
     override fun onCreate(savedInstanceState: Bundle?) {
-        //TODO need to check and ask for sms permission!!
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         view_pager.adapter = SectionsPagerAdapter(this)
