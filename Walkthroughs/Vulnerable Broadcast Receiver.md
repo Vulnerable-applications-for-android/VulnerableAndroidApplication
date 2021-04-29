@@ -64,7 +64,7 @@ Then look in logcat and you should see the number and message showing that the m
 
 
 ## Fixing the vulnerability
-To fix the vulnerability we want the Broadcast Receiver to check where the message is coming from. One way to do this would be to add a secret which is parsed with the Intent. The Broadcast Receiver then checks if the secret value is correct and only sends an SMS if it is. The new Broadcast Receiver would then look like so.
+To fix the vulnerability we want the Broadcast Receiver to check where the message is coming from. One way to do this would be to add a secret which is parsed with the Intent. The Broadcast Receiver then checks if the secret value is correct and only sends an SMS if it is. The new Broadcast Receiver would then look like below. However, in practice you should use a much more secure secret and also not hardcode it in.
 
 
 ![image](https://user-images.githubusercontent.com/45278231/116543560-eb160c80-a8e5-11eb-95bf-e64b07858432.png)
