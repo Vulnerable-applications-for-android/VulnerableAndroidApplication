@@ -75,5 +75,10 @@ Then in the SMS app when it sends a Broadcast message add the secret too the int
 ![image](https://user-images.githubusercontent.com/45278231/111526172-4e911400-8756-11eb-9ab6-ed277ad59a33.png)
 
 
+A second fix which is much simpiler but does not allow any other apps to use the service is to set exported to false in the Manifest file like so.
+
+![image](https://user-images.githubusercontent.com/45278231/116542417-8908d780-a8e4-11eb-9f1b-68f50be871d6.png)
+
+
 ## Summary
 The SMS app has a Broadcast Receiver which sends an SMS message. The Broadcast Receiver is vulnerable because it does not check who sent a Broadcast message for it so a malicouse app could send SMS messages from the phone without the using knowing. When using a Broadcast Receiver you should always consider if you want anyone to be able to send a Broadcast message to the Receiver as depending on what the Receiver does this could be used in malicouse ways.
