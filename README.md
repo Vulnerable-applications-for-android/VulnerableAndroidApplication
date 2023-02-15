@@ -10,3 +10,4 @@ This repository contains two vulnerable apps. These are a vulnerable Banking app
 
 
 There are four walkthroughs, one for each component. The walkthroughs provide information about the component and its vulnerabiltiy, how to exploit the vulnerability and how to fix it. You can find these walkthoughs and how to setup the apps [here.](https://github.com/FraserGrandfield/VulnerableAndroidApplication/tree/main/Walkthroughs)
+# VulnerableBankingApp
