@@ -34,9 +34,9 @@ jobs:
       - name: Run mobsfscan
         uses: MobSF/mobsfscan@9bef3983eb13051b2162626717eeaed96c3fbbd7
         with:
-          args: . --sarif --output results.sarif || true
+          args: /home/runner/work/VulnerableAndroidApplication/VulnerableAndroidApplication/VulnerableSMSApp --sarif --output results3.sarif || true
 
       - name: Upload mobsfscan report
         uses: github/codeql-action/upload-sarif@18fe527fa8b29f134bb91f32f1a5dc5abb15ed7f
         with:
-          sarif_file: results.sarif
+          sarif_file: results3.sarif
